@@ -1,0 +1,22 @@
+.left-column {
+    padding: 10px;
+}
+
+.modules-container {
+    height: 400px;
+    background-color: #1a6451;
+}
+
+.right-column {
+    padding: 10px;
+}
+
+.cap-container {
+    height: 500px;
+    background-color: #1b6d85;
+}
+
+.suggestion-container {
+    height: 200px;
+    background-color: #2b669a;
+}

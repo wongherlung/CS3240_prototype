@@ -38,6 +38,16 @@ html, body {
     margin-bottom: 20px;
 }
 
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 /* For overriding Bootflat styles */
 .navbar {
     border-radius: 0;
@@ -76,6 +86,10 @@ html, body {
 .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     background-color: #FFCE54;
+}
+
+.navbar-right:hover {
+    text-decoration: underline;
 }
 
 .btn {
