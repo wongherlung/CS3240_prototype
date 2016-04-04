@@ -1,5 +1,8 @@
+html, body {
+    background-color: #eaeaea;
+}
 
-
+/* Convenient CSS to use */
 .mt5 {
     margin-top: 5px;
 }
@@ -25,6 +28,45 @@
 }
 
 /* For overriding Bootflat styles */
+.navbar {
+    border-radius: 0;
+    background-color: #F6BB42;
+    border-color: #F6BB42;
+}
+
+.navbar-nav:hover {
+    background-color: #d2a038;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle{
+    background-color: #d2a038;
+    border-color: #d2a038;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #d2a038;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #d2a038;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-link, .navbar-default .btn-link,
+.navbar-default .navbar-text, .navbar-default .navbar-nav > li > a{
+    color: white;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default
+.navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    background-color: #FFCE54;
+}
+
 .btn {
     border-radius: 0;
     border-bottom-style: solid;
