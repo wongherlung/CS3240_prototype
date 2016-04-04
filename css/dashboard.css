@@ -2,10 +2,6 @@
     padding: 10px;
 }
 
-.modules-container {
-    height: 400px;
-}
-
 .right-column {
     padding: 10px;
 }
@@ -24,6 +20,13 @@
 
 .GEM {
     background-color: #FFCE54;
+}
+
+/* Module Listing CSS */
+
+.modules-container {
+    padding: 10px;
+    padding-top: 0px;
 }
 
 /* CAP CSS */
