@@ -2,6 +2,8 @@ $(document).ready(function() {
 
   initUserDefaults();
 
+  initModulesList();
+
   initCAPWindow();
   capWindowEvents();
 
@@ -106,6 +108,203 @@ function generateSuggestion(code, name, types) {
   button.attr('data-code', code);
   $('.suggestion-item-container-location').append(suggestion);
 }
+
+function initModulesList() {
+  generateTable(1,1);
+  generateTable(1,2);
+  generateTable(2,1);
+  generateTable(2,2);
+  generateTable(3,1);
+}
+
+function generateTable(year, semester) {
+  var pastSemesterTemplate = '';
+  pastSemesterTemplate += '<table class="table">';
+  pastSemesterTemplate += '<thead>';
+  pastSemesterTemplate += '<tr>';
+  pastSemesterTemplate += '<td>Module Code</td>';
+  pastSemesterTemplate += '<td>Name</td>';
+  pastSemesterTemplate += '<td>Type</td>';
+  // TODO: Insert Tooltip here
+  pastSemesterTemplate += '<td>Workload</td>';
+  pastSemesterTemplate += '<td>Credits</td>';
+  pastSemesterTemplate += '<td>Grade Obtained</td>';
+  pastSemesterTemplate += '</tr>';
+  pastSemesterTemplate += '</thead>';
+  pastSemesterTemplate += '<tbody>';
+
+  for (var moduleCode in pastModules) {
+    var pastModule = pastModules[moduleCode];
+    if (pastModule.year == year && pastModule.semester == semester && modules[moduleCode]) {
+      pastSemesterTemplate += '<tr>';
+      pastSemesterTemplate += '<td>'+moduleCode+'</td>';
+      pastSemesterTemplate += '<td>'+modules[moduleCode].name+'</td>';
+      var type = pastModule.type;
+      pastSemesterTemplate += '<td><span class="label ' + type + ' " style="margin-right: 5px;">' + type + '</span></td>';
+      pastSemesterTemplate += '<td>'+modules[moduleCode].workload+'</td>';
+      pastSemesterTemplate += '<td>'+modules[moduleCode].credits+'</td>';
+      pastSemesterTemplate += '<td>'+pastModule.grade+'</td>';
+      pastSemesterTemplate += '</tr>';
+    }
+  }
+
+  pastSemesterTemplate += '</tbody>';
+  pastSemesterTemplate += '</table>';
+  $('.year'+year+'semester'+semester).append(pastSemesterTemplate);
+}
+
+var pastModules = {
+  "CS1101S": {
+    "year": 1,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS1231": {
+    "year": 1,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "MA1521": {
+    "year": 1,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "MA1101R": {
+    "year": 1,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "TR2201": {
+    "year": 1,
+    "semester": 1,
+    "type": "UE",
+    "grade": "A"
+  },
+  "LSM1302": {
+    "year": 1,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "ST2334": {
+    "year": 1,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "IS1103": {
+    "year": 1,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2020": {
+    "year": 1,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2100": {
+    "year": 2,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2101": {
+    "year": 2,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2103T": {
+    "year": 2,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS3216": {
+    "year": 2,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2103": {
+    "year": 2,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2102": {
+    "year": 2,
+    "semester": 1,
+    "type": "Breadth",
+    "grade": "A"
+  },
+  "CS2105": {
+    "year": 2,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2106": {
+    "year": 2,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS2107": {
+    "year": 2,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS3230": {
+    "year": 2,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "LSM1303": {
+    "year": 2,
+    "semester": 2,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS3103": {
+    "year": 3,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "LSM1301": {
+    "year": 3,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "GEK1520": {
+    "year": 3,
+    "semester": 1,
+    "type": "GEM",
+    "grade": "A"
+  },
+  "CS4238": {
+    "year": 3,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  },
+  "CS3235": {
+    "year": 3,
+    "semester": 1,
+    "type": "Core",
+    "grade": "A"
+  }
+};
 
 var modules = {
   "CS1101S": {
@@ -234,7 +433,7 @@ var modules = {
     "credits": 4,
     "workload": "5-4-3-2-4"
   },
-  "CS1301": {
+  "LSM1301": {
     "name": "General Biology",
     "type": ["Core", "UE", "Breadth"],
     "credits": 4,
