@@ -111,6 +111,10 @@ small {
     border-radius: 0;
 }
 
+.label {
+    border-radius: 0;
+}
+
 .btn {
     border-radius: 0;
     border-bottom-style: solid;

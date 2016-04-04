@@ -10,6 +10,22 @@
     padding: 10px;
 }
 
+.Core {
+    background-color: #E9573F;
+}
+
+.UE {
+    background-color: #48CFAD;
+}
+
+.Breadth {
+    background-color: #5D9CEC;
+}
+
+.GEM {
+    background-color: #FFCE54;
+}
+
 /* CAP CSS */
 
 .cap-container {
@@ -41,6 +57,49 @@
     cursor: pointer;
 }
 
+/* Sugeestion CSS */
+
 .suggestion-container {
-    height: 200px;
+    padding: 10px;
+    padding-top: 0;
+}
+
+.suggestion-item-container-location {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.suggestion-item-container {
+    height: 80px;
+    margin-top: 20px;
+}
+
+.suggestion-module-code {
+    font-size: 1.4em;
+    float: left;
+    margin-right: 10px;
+}
+
+.suggestion-module-types {
+    float: left;
+    top: 3px;
+    position: relative;
+}
+
+.suggestion-module-name {
+    top: 5px;
+    text-align: left;
+    clear: both;
+    white-space: nowrap;
+    overflow: hidden;              /* "overflow" value must be different from  visible"*/
+    -o-text-overflow: ellipsis;    /* Opera < 11*/
+    text-overflow:    ellipsis;
+}
+
+.add-suggested-module-btn {
+    font-size: 2em;
+    height: 40px;
+    width: 40px;
+    padding: 0;
 }

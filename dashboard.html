@@ -44,8 +44,8 @@
             <div class="modules-container box"></div>
         </div><!-- /.modules-column -->
 
-        <!-- Cap goal setting -->
         <div class="col-md-4 right-column">
+            <!-- Cap goal setting -->
             <div class="cap-container col-md-12 box text-center">
                 <h3>Overview</h3>
                 <div class="col-md-6 cap-text text-center">Current CAP :</div>
@@ -66,8 +66,11 @@
                 </div>
             </div><!-- /.cap-container -->
 
+            <!-- Module Suggestions -->
             <div class="suggestion-container col-md-12 mt20 box text-center">
                 <h3>Module Suggestions</h3>
+                <p>For upcoming semester</p>
+                <div class="suggestion-item-container-location"></div>
             </div><!-- /.suggestion-container-->
         </div><!-- /.cap-column -->
     </div>
@@ -97,8 +100,22 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- Templates -->
+<div class="suggestion-item-template">
+    <div class="suggestion-item-container hidden">
+        <div class="col-md-9">
+            <div class="suggestion-module-code"></div>
+            <div class="suggestion-module-types"></div>
+            <div class="suggestion-module-name"></div>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-success add-suggested-module-btn">+</button>
+        </div>
+    </div>
+</div>
+
 <!-- JavaScript placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="js/jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/dashboard.js"></script>
 </body>
