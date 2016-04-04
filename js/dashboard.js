@@ -122,13 +122,13 @@ function generateTable(year, semester) {
   pastSemesterTemplate += '<table class="table">';
   pastSemesterTemplate += '<thead>';
   pastSemesterTemplate += '<tr>';
-  pastSemesterTemplate += '<td>Module Code</td>';
-  pastSemesterTemplate += '<td>Name</td>';
-  pastSemesterTemplate += '<td>Type</td>';
+  pastSemesterTemplate += '<td class="module-code-column">Module Code</td>';
+  pastSemesterTemplate += '<td class="module-name-column">Name</td>';
+  pastSemesterTemplate += '<td align="center">Type</td>';
   // TODO: Insert Tooltip here
-  pastSemesterTemplate += '<td>Workload</td>';
-  pastSemesterTemplate += '<td>Credits</td>';
-  pastSemesterTemplate += '<td>Grade Obtained</td>';
+  pastSemesterTemplate += '<td align="center">Workload</td>';
+  pastSemesterTemplate += '<td align="center">Credits</td>';
+  pastSemesterTemplate += '<td align="center">Grade Obtained</td>';
   pastSemesterTemplate += '</tr>';
   pastSemesterTemplate += '</thead>';
   pastSemesterTemplate += '<tbody>';
@@ -137,13 +137,13 @@ function generateTable(year, semester) {
     var pastModule = pastModules[moduleCode];
     if (pastModule.year == year && pastModule.semester == semester && modules[moduleCode]) {
       pastSemesterTemplate += '<tr>';
-      pastSemesterTemplate += '<td>'+moduleCode+'</td>';
+      pastSemesterTemplate += '<td align="right">'+moduleCode+'</td>';
       pastSemesterTemplate += '<td>'+modules[moduleCode].name+'</td>';
       var type = pastModule.type;
-      pastSemesterTemplate += '<td><span class="label ' + type + ' " style="margin-right: 5px;">' + type + '</span></td>';
-      pastSemesterTemplate += '<td>'+modules[moduleCode].workload+'</td>';
-      pastSemesterTemplate += '<td>'+modules[moduleCode].credits+'</td>';
-      pastSemesterTemplate += '<td>'+pastModule.grade+'</td>';
+      pastSemesterTemplate += '<td align="center"><span class="label ' + type + ' " style="margin-right: 5px;">' + type + '</span></td>';
+      pastSemesterTemplate += '<td align="center">'+modules[moduleCode].workload+'</td>';
+      pastSemesterTemplate += '<td align="center">'+modules[moduleCode].credits+'</td>';
+      pastSemesterTemplate += '<td align="center">'+pastModule.grade+'</td>';
       pastSemesterTemplate += '</tr>';
     }
   }

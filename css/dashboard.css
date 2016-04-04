@@ -29,6 +29,14 @@
     padding-top: 0px;
 }
 
+.module-code-column {
+    width: 12%;
+}
+
+.module-name-column {
+    width: 40%;
+}
+
 /* CAP CSS */
 
 .cap-container {
