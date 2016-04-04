@@ -1,0 +1,61 @@
+
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+/* For overriding Bootflat styles */
+.btn {
+    border-radius: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: #656D78;
+}
+
+.btn:hover, .btn:focus {
+    border-bottom-color: #1a6451;
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus {
+    border-bottom-color: #E6E9ED;
+}
+
+.btn-info, .btn-info:hover, .btn-info:focus {
+     border-bottom-color: #1a6451;
+ }
+
+.btn-primary, .btn-primary:hover, .btn-primary:focus {
+    border-bottom-color: #5D9CEC;
+}
+
+.btn-success, .btn-success:hover, .btn-success:focus {
+    border-bottom-color: #678f3f;
+}
+
+.btn-warning, .btn-warning:hover, .btn-warning:focus {
+     border-bottom-color: #d19f38;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:focus {
+    border-bottom-color: #ae3642;
+}
