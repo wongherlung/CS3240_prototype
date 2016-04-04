@@ -4,19 +4,43 @@
 
 .modules-container {
     height: 400px;
-    background-color: #1a6451;
 }
 
 .right-column {
     padding: 10px;
 }
 
+/* CAP CSS */
+
 .cap-container {
-    height: 500px;
-    background-color: #1b6d85;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.cap-text {
+    height: 60px;
+    line-height: 60px;
+}
+
+.cap-value {
+    height: 60px;
+    font-size: 2.5em;
+}
+
+#module-credits-value, #goal-cap-value {
+    line-height: 15px;
+    top: 17.5px;
+}
+
+#hidden-cap {
+    font-size: 0.4em;
+}
+
+#hidden-cap:hover, #js-edit-goal-cap:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .suggestion-container {
     height: 200px;
-    background-color: #2b669a;
 }

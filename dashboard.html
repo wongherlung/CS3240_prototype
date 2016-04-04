@@ -41,19 +41,65 @@
     <div class="col-md-10 col-centered">
         <!-- Modules list -->
         <div class="col-md-8 left-column">
-            <div class="modules-container"></div>
+            <div class="modules-container box"></div>
         </div><!-- /.modules-column -->
 
         <!-- Cap goal setting -->
         <div class="col-md-4 right-column">
-            <div class="cap-container col-md-12"></div>
-            <div class="suggestion-container col-md-12 mt20"></div>
+            <div class="cap-container col-md-12 box text-center">
+                <h3>Overview</h3>
+                <div class="col-md-6 cap-text text-center">Current CAP :</div>
+                <div class="col-md-6 cap-value text-center js-current-cap"><span id="hidden-cap">(click to show)</span></div>
+
+                <div class="col-md-6 cap-text text-center" id="goal-cap-value">Goal CAP :<br><a href="#" style="font-size: 0.6em;" id="js-edit-goal-cap">Edit</a></div>
+                <div class="col-md-6 cap-value text-center js-goal-cap-value"></div>
+
+                <div class="col-md-6 cap-text text-center">Module Credits :</div>
+                <div class="col-md-6 cap-value text-center" id="module-credits-value">120<br><small>out of 160</small></div>
+
+                <div class="col-md-12 mt20">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                            <span class="sr-only">60% Complete (success)</span>
+                        </div>
+                    </div><!-- /.progress -->
+                </div>
+            </div><!-- /.cap-container -->
+
+            <div class="suggestion-container col-md-12 mt20 box text-center">
+                <h3>Module Suggestions</h3>
+            </div><!-- /.suggestion-container-->
         </div><!-- /.cap-column -->
     </div>
 </div>
 
+<!-- Edit Goal CAP modal -->
+<div id="edit-goal-cap-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog box">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit your goal CAP</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group goal-cap-form-group">
+                    <label for="goal-cap-field">Goal CAP <small style="font-size: 0.75em;">(Please enter in a value between 0 to 5.)</small></label>
+                    <input type="text" class="form-control goal-cap-input" id="goal-cap-field" onclick="this.select()">
+                    <div class="error-message-box"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default js-close-cap-modal" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success js-save-goal-cap">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- JavaScript placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>

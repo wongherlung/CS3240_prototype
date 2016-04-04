@@ -48,6 +48,17 @@ html, body {
     margin: 0 auto;
 }
 
+.box {
+    background-color: white;
+    border-top-color: #F6BB42;
+    border-top-style: solid;
+    border-top-width: 10px;
+}
+
+small {
+    font-size: 0.3em;
+}
+
 /* For overriding Bootflat styles */
 .navbar {
     border-radius: 0;
@@ -90,6 +101,14 @@ html, body {
 
 .navbar-right:hover {
     text-decoration: underline;
+}
+
+.progress {
+    border-radius: 0;
+}
+
+.form-control {
+    border-radius: 0;
 }
 
 .btn {
