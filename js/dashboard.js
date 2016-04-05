@@ -85,13 +85,17 @@ function processNewCAPEntered() {
 }
 
 function initSuggestionsWindow() {
-  for (var i in modules) {
-    var module = modules[i];
-    generateSuggestion(i, module.name, module.type);
+  $('.suggestion-item-container-location').html('');
+  for (var i in futureModules) {
+    if (futureModules[i].year == '') {
+      generateSuggestion(i);
+    }
   }
 }
 
-function generateSuggestion(code, name, types) {
+function generateSuggestion(code) {
+  var name = modules[code].name;
+  var types = modules[code].type;
   var suggestion = $($('.suggestion-item-template').html());
   suggestion.removeClass('hidden');
   var elements = $(suggestion.children()[0]);
@@ -106,6 +110,18 @@ function generateSuggestion(code, name, types) {
   }
   moduleName.html(name);
   button.attr('data-code', code);
+  button.click(function() {
+    $('.year3semester2 .chosen-single').css('border-color', '#8CC152');
+    $('#module-select-3-2').val(code+' - '+modules[code].name).trigger("chosen:updated");
+    var availableTypes = modules[code].type;
+    // Reset the options.
+    $('#module-select-type-3-2').html('');
+    availableTypes.forEach(function(value) {
+      $('#module-select-type-3-2').append('<option value="'+value+'">'+value+'</option>');
+    });
+    $('#module-select-type-3-2').prop('disabled', false);
+    $('#module-select-type-3-2').val('').trigger("chosen:updated");
+  });
   $('.suggestion-item-container-location').append(suggestion);
 }
 
@@ -122,6 +138,8 @@ function initModulesList() {
   attachAutoCompleteToSearchModuleInput(3,2);
   attachAutoCompleteToSearchModuleInput(4,1);
   attachAutoCompleteToSearchModuleInput(4,2);
+
+  $('.year3semester2 .chosen-single').css('border-color', '#CCCCCC');
 }
 
 function generatePastSemesterTable(year, semester) {
@@ -251,8 +269,8 @@ function attachAutoCompleteToSearchModuleInput(y, s) {
       $('#module-select-'+y+'-'+s).val('').trigger("chosen:updated");
       $('#module-select-type-'+y+'-'+s).val('').trigger("chosen:updated");
       initModulesList();
+      initSuggestionsWindow();
     }
-    console.log();
   });
 }
 
