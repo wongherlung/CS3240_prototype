@@ -25,6 +25,11 @@
 
 /* Module Listing CSS */
 
+.collapsible:hover, .collapse-all:hover {
+    cursor: pointer;
+    color: #5D9CEC;
+}
+
 .modules-container {
     padding: 10px;
     padding-top: 0px;

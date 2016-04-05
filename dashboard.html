@@ -44,84 +44,100 @@
         <div class="col-md-8 left-column">
             <!-- Modules listing -->
             <div class="modules-container box text-center">
-                <h3>Modules Listing</h3>
+                <h3 class="collapse-all">Modules Listing</h3>
                 <div class="year1semester1 text-left">
-                    <h4>Year 1 Semester 1</h4>
-                    <div class="year1semester1-table"></div>
+                    <h4 class="collapsible">Year 1 Semester 1</h4>
+                    <div class="collapse collapsible-container">
+                        <div class="year1semester1-table"></div>
+                    </div>
                 </div>
                 <div class="year1semester2 text-left">
-                    <h4>Year 1 Semester 2</h4>
-                    <div class="year1semester2-table"></div>
+                    <h4 class="collapsible">Year 1 Semester 2</h4>
+                    <div class="collapse collapsible-container">
+                        <div class="year1semester2-table"></div>
+                    </div>
                 </div>
                 <div class="year2semester1 text-left">
-                    <h4>Year 2 Semester 1</h4>
-                    <div class="year2semester1-table"></div>
+                    <h4 class="collapsible">Year 2 Semester 1</h4>
+                    <div class="collapse collapsible-container">
+                        <div class="year2semester1-table"></div>
+                    </div>
                 </div>
                 <div class="year2semester2 text-left">
-                    <h4>Year 2 Semester 2</h4>
-                    <div class="year2semester2-table"></div>
+                    <h4 class="collapsible">Year 2 Semester 2</h4>
+                    <div class="collapse collapsible-container">
+                        <div class="year2semester2-table"></div>
+                    </div>
                 </div>
                 <div class="year3semester1 text-left">
-                    <h4>Year 3 Semester 1</h4>
-                    <div class="year3semester1-table"></div>
+                    <h4 class="collapsible">Year 3 Semester 1</h4>
+                    <div class="collapse collapsible-container">
+                        <div class="year3semester1-table"></div>
+                    </div>
                 </div>
                 <div class="year3semester2 text-left">
-                    <h4>Year 3 Semester 2 (Current)</h4>
-                    <div class="year3semester2-table"></div>
-                    <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-3-2"></div>
-                    <div class="row">
-                        <div class="form-group col-md-5">
-                            <label for="module-select-3-2">Search for module</label>
-                            <select class="chosen-select" data-placeholder="Select a module." id="module-select-3-2" name="module-select">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="module-select-type-3-2">Select Module Type</label>
-                            <select disabled data-placeholder="Select a module type" id="module-select-type-3-2" name="module-select-type">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2 add-module-btn-container">
-                            <button disabled type="button" data-year="3" data-semester="2" class="btn btn-success js-new-module-3-2">Add</button>
+                    <h4 class="collapsible">Year 3 Semester 2 (Current)</h4>
+                    <div class="collapsible-container">
+                        <div class="year3semester2-table"></div>
+                        <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-3-2"></div>
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="module-select-3-2">Search for module</label>
+                                <select class="chosen-select" data-placeholder="Select a module." id="module-select-3-2" name="module-select">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="module-select-type-3-2">Select Module Type</label>
+                                <select disabled data-placeholder="Select a module type" id="module-select-type-3-2" name="module-select-type">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2 add-module-btn-container">
+                                <button disabled type="button" data-year="3" data-semester="2" class="btn btn-success js-new-module-3-2">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="year4semester1 text-left">
-                    <h4>Year 4 Semester 1</h4>
-                    <div class="year4semester1-table"></div>
-                    <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-4-1"></div>
-                    <div class="row">
-                        <div class="form-group col-md-5">
-                            <label for="module-select-4-1">Search for module</label>
-                            <select class="chosen-select" data-placeholder="Select a module." id="module-select-4-1" name="module-select">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="module-select-type-4-1">Select Module Type</label>
-                            <select disabled data-placeholder="Select a module type" id="module-select-type-4-1" name="module-select-type">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2 add-module-btn-container">
-                            <button disabled type="button" data-year="4" data-semester="1" class="btn btn-success js-new-module-4-1">Add</button>
+                    <h4 class="collapsible">Year 4 Semester 1</h4>
+                    <div class="collapsible-container">
+                        <div class="year4semester1-table"></div>
+                        <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-4-1"></div>
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="module-select-4-1">Search for module</label>
+                                <select class="chosen-select" data-placeholder="Select a module." id="module-select-4-1" name="module-select">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="module-select-type-4-1">Select Module Type</label>
+                                <select disabled data-placeholder="Select a module type" id="module-select-type-4-1" name="module-select-type">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2 add-module-btn-container">
+                                <button disabled type="button" data-year="4" data-semester="1" class="btn btn-success js-new-module-4-1">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="year4semester2 text-left">
-                    <h4>Year 4 Semester 2</h4>
-                    <div class="year4semester2-table"></div>
-                    <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-4-2"></div>
-                    <div class="row">
-                        <div class="form-group col-md-5">
-                            <label for="module-select-4-2">Search for module</label>
-                            <select class="chosen-select" data-placeholder="Select a module." id="module-select-4-2" name="module-select">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="module-select-type-4-2">Select Module Type</label>
-                            <select disabled data-placeholder="Select a module type" id="module-select-type-4-2" name="module-select-type">
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2 add-module-btn-container">
-                            <button disabled type="button" data-year="4" data-semester="2" class="btn btn-success js-new-module-4-2">Add</button>
+                    <h4 class="collapsible">Year 4 Semester 2</h4>
+                    <div class="collapsible-container">
+                        <div class="year4semester2-table"></div>
+                        <div style="color: #E9573F; text-align: right; position: relative; top: -25px;" class="error-message-box-4-2"></div>
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="module-select-4-2">Search for module</label>
+                                <select class="chosen-select" data-placeholder="Select a module." id="module-select-4-2" name="module-select">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="module-select-type-4-2">Select Module Type</label>
+                                <select disabled data-placeholder="Select a module type" id="module-select-type-4-2" name="module-select-type">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2 add-module-btn-container">
+                                <button disabled type="button" data-year="4" data-semester="2" class="btn btn-success js-new-module-4-2">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>

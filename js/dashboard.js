@@ -8,6 +8,8 @@ $(document).ready(function() {
   capWindowEvents();
 
   initSuggestionsWindow();
+
+  initCollapsibleContainers();
 });
 
 function get(key) {
@@ -34,6 +36,24 @@ function initRemoveModule() {
     futureModules[code].year = '';
     futureModules[code].semester = '';
     initModulesList();
+  });
+}
+
+var shouldCollapse = false;
+function initCollapsibleContainers() {
+  $('.collapsible').click(function(e) {
+    var container = $($(e.currentTarget).siblings()[0]);
+    container.toggleClass("collapse");
+  });
+
+  $('.collapse-all').click(function(e) {
+    if (shouldCollapse) {
+      $('.collapsible-container').addClass('collapse');
+      shouldCollapse = false;
+    } else {
+      $('.collapsible-container').removeClass('collapse');
+      shouldCollapse = true;
+    }
   });
 }
 
