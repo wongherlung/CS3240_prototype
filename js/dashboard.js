@@ -197,12 +197,20 @@ function generateFutureSemsTable(year, semester) {
   futureSemesterTemplate += '<tbody>';
 
   var hasAtLeastOneModule = false;
+  var hasIneligibleModule = false;
 
   for (var moduleCode in futureModules) {
     var futureModule = futureModules[moduleCode];
     if (futureModule.year == year && futureModule.semester == semester && modules[moduleCode]) {
       hasAtLeastOneModule = true;
-      futureSemesterTemplate += '<tr>';
+
+      if (!futureModule.eligible) {
+        hasIneligibleModule = true;
+        futureSemesterTemplate += '<tr style="color: #E9573F">';
+      } else {
+        futureSemesterTemplate += '<tr>';
+      }
+
       futureSemesterTemplate += '<td align="right">'+moduleCode+'</td>';
       futureSemesterTemplate += '<td>'+modules[moduleCode].name+'</td>';
       var type = futureModule.chosenType;
@@ -268,6 +276,10 @@ function generateFutureSemsTable(year, semester) {
     }
   }
 
+  if (hasIneligibleModule) {
+    $('.error-message-box-'+year+'-'+semester).html("You have selected a module that you are not eligible for.");
+  }
+
   if (year == 3 && semester == 2) {
     updateExpectedCAPForThisSem();
   }
@@ -286,6 +298,9 @@ function updateExpectedCAPForThisSem() {
     }
   }
   var expectedCAP = (4 + totalPointsThisSem / numberOfModules) / 2;
+  if (isNaN(expectedCAP)) {
+    expectedCAP = 4.00;
+  }
   $('.expected-cap').html('Expected CAP after this semester: ' + expectedCAP.toFixed(2));
 }
 
@@ -716,6 +731,30 @@ var modules = {
     "type": ["Core", "UE", "Breadth"],
     "credits": 4,
     "workload": "5-4-3-2-4"
+  },
+  "ACC1002": {
+    "name": "Financial Accounting",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "ACC1006": {
+    "name": "Accounting Information Systems",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CG1108": {
+    "name": "Electrical Engineering",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CG2023": {
+    "name": "Signals and System",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
   }
 };
 
@@ -724,24 +763,56 @@ var futureModules = {
     "chosenType": "",
     "expectedGrade": "",
     "year": "",
-    "semester": ""
+    "semester": "",
+    "eligible": true
   },
   "CS5331": {
     "chosenType": "",
     "expectedGrade": "",
     "year": "",
-    "semester": ""
+    "semester": "",
+    "eligible": true
   },
   "IS4231": {
     "chosenType": "",
     "expectedGrade": "",
     "year": "",
-    "semester": ""
+    "semester": "",
+    "eligible": true
   },
   "IS4232": {
     "chosenType": "",
     "expectedGrade": "",
     "year": "",
-    "semester": ""
+    "semester": "",
+    "eligible": true
+  },
+  "ACC1002": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": "",
+    "eligible": false
+  },
+  "ACC1006": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": "",
+    "eligible": false
+  },
+  "CG1108": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": "",
+    "eligible": false
+  },
+  "CG2023": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": "",
+    "eligible": false
   }
 };
