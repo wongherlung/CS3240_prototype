@@ -26,6 +26,17 @@ function initCAPWindow() {
   $('.js-goal-cap-value').html(parseFloat(get('goal_cap')).toFixed(2));
 }
 
+function initRemoveModule() {
+  $('.remove-module').click(function(e) {
+    e.preventDefault();
+    var code = $(this).data('code');
+    futureModules[code].expectedGrade = '';
+    futureModules[code].year = '';
+    futureModules[code].semester = '';
+    initModulesList();
+  });
+}
+
 function capWindowEvents() {
   // Show the hidden CAP
   $('#hidden-cap').click(function() {
@@ -140,6 +151,7 @@ function initModulesList() {
   attachAutoCompleteToSearchModuleInput(4,2);
 
   $('.year3semester2 .chosen-single').css('border-color', '#CCCCCC');
+  initRemoveModule();
 }
 
 function generatePastSemesterTable(year, semester) {
@@ -194,6 +206,7 @@ function generateFutureSemsTable(year, semester) {
   futureSemesterTemplate += '<td align="center">Workload</td>';
   futureSemesterTemplate += '<td align="center">Credits</td>';
   futureSemesterTemplate += '<td align="center" style="width: 10%;">Grade to Obtain</td>';
+  futureSemesterTemplate += '<td align="center"></td>';
   futureSemesterTemplate += '</tr>';
   futureSemesterTemplate += '</thead>';
   futureSemesterTemplate += '<tbody>';
@@ -235,13 +248,14 @@ function generateFutureSemsTable(year, semester) {
       futureSemesterTemplate += '<option value="D">D</option>';
       futureSemesterTemplate += '</select>';
       futureSemesterTemplate += '</td>';
+      futureSemesterTemplate += '<td align="center"><a href="#" style="font-size: 0.8em;" class="remove-module" data-code="'+moduleCode+'">Remove</td>';
       futureSemesterTemplate += '</tr>';
     }
   }
 
   if (year == 3 && semester == 2) {
     futureSemesterTemplate += '<tr>';
-    futureSemesterTemplate += '<td class="expected-cap" colspan="6" style="text-align: right;" ">';
+    futureSemesterTemplate += '<td class="expected-cap" colspan="7" style="text-align: right;" ">';
     futureSemesterTemplate += 'Expected CAP after this semester: -';
     futureSemesterTemplate += '</td>';
     futureSemesterTemplate += '</tr>';
@@ -279,6 +293,7 @@ function generateFutureSemsTable(year, semester) {
     }
   }
 
+  $('.error-message-box-'+year+'-'+semester).html('');
   if (hasIneligibleModule) {
     $('.error-message-box-'+year+'-'+semester).html("You have selected a module that you are not eligible for.");
   }
