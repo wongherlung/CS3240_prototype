@@ -180,6 +180,8 @@ function generatePastSemesterTable(year, semester) {
 }
 
 function generateFutureSemsTable(year, semester) {
+  var totalNumberOfModulesForThisSem = 0;
+
   $('.year'+year+'semester'+semester+'-table').html('');
   var futureSemesterTemplate = '';
   futureSemesterTemplate += '<table class="table">';
@@ -203,6 +205,7 @@ function generateFutureSemsTable(year, semester) {
     var futureModule = futureModules[moduleCode];
     if (futureModule.year == year && futureModule.semester == semester && modules[moduleCode]) {
       hasAtLeastOneModule = true;
+      totalNumberOfModulesForThisSem++;
 
       if (!futureModule.eligible) {
         hasIneligibleModule = true;
@@ -282,6 +285,10 @@ function generateFutureSemsTable(year, semester) {
 
   if (year == 3 && semester == 2) {
     updateExpectedCAPForThisSem();
+  }
+
+  if (totalNumberOfModulesForThisSem >= 7) {
+    $('#module-select-'+year+'-'+semester).prop('disabled', true);
   }
 }
 
