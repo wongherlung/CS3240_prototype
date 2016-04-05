@@ -110,14 +110,22 @@ function generateSuggestion(code, name, types) {
 }
 
 function initModulesList() {
-  generateTable(1,1);
-  generateTable(1,2);
-  generateTable(2,1);
-  generateTable(2,2);
-  generateTable(3,1);
+  generatePastSemesterTable(1,1);
+  generatePastSemesterTable(1,2);
+  generatePastSemesterTable(2,1);
+  generatePastSemesterTable(2,2);
+  generatePastSemesterTable(3,1);
+  generateFutureSemsTable(3,2);
+  generateFutureSemsTable(4,1);
+  generateFutureSemsTable(4,2);
+
+  attachAutoCompleteToSearchModuleInput(3,2);
+  attachAutoCompleteToSearchModuleInput(4,1);
+  attachAutoCompleteToSearchModuleInput(4,2);
 }
 
-function generateTable(year, semester) {
+function generatePastSemesterTable(year, semester) {
+  $('.year'+year+'semester'+semester+'-table').html('');
   var pastSemesterTemplate = '';
   pastSemesterTemplate += '<table class="table">';
   pastSemesterTemplate += '<thead>';
@@ -150,7 +158,102 @@ function generateTable(year, semester) {
 
   pastSemesterTemplate += '</tbody>';
   pastSemesterTemplate += '</table>';
-  $('.year'+year+'semester'+semester).append(pastSemesterTemplate);
+  $('.year'+year+'semester'+semester+'-table').append(pastSemesterTemplate);
+}
+
+function generateFutureSemsTable(year, semester) {
+  $('.year'+year+'semester'+semester+'-table').html('');
+  var futureSemesterTemplate = '';
+  futureSemesterTemplate += '<table class="table">';
+  futureSemesterTemplate += '<thead>';
+  futureSemesterTemplate += '<tr>';
+  futureSemesterTemplate += '<td>Module Code</td>';
+  futureSemesterTemplate += '<td>Name</td>';
+  futureSemesterTemplate += '<td align="center">Type</td>';
+  // TODO: Insert Tooltip here
+  futureSemesterTemplate += '<td align="center">Workload</td>';
+  futureSemesterTemplate += '<td align="center">Credits</td>';
+  futureSemesterTemplate += '<td align="center">Grade to Obtain</td>';
+  futureSemesterTemplate += '</tr>';
+  futureSemesterTemplate += '</thead>';
+  futureSemesterTemplate += '<tbody>';
+
+  for (var moduleCode in futureModules) {
+    var futureModule = futureModules[moduleCode];
+    if (futureModule.year == year && futureModule.semester == semester && modules[moduleCode]) {
+      futureSemesterTemplate += '<tr>';
+      futureSemesterTemplate += '<td align="right">'+moduleCode+'</td>';
+      futureSemesterTemplate += '<td>'+modules[moduleCode].name+'</td>';
+      var type = futureModule.chosenType;
+      futureSemesterTemplate += '<td align="center"><span class="label ' + type + ' " style="margin-right: 5px;">' + type + '</span></td>';
+      futureSemesterTemplate += '<td align="center">'+modules[moduleCode].workload+'</td>';
+      futureSemesterTemplate += '<td align="center">'+modules[moduleCode].credits+'</td>';
+      futureSemesterTemplate += '<td align="center">-</td>';
+      futureSemesterTemplate += '</tr>';
+    }
+  }
+
+  futureSemesterTemplate += '</tbody>';
+  futureSemesterTemplate += '</table>';
+  $('.year'+year+'semester'+semester+'-table').append(futureSemesterTemplate);
+
+  var newModuleHtml = '';
+
+}
+
+function attachAutoCompleteToSearchModuleInput(y, s) {
+  var moduleCodes = Object.keys(futureModules);
+  moduleCodes = moduleCodes.filter(function(code) {
+    return futureModules[code].year == '';
+  });
+  var values = moduleCodes.map(function(code) {
+    return code + ' - ' + modules[code].name;
+  });
+
+  $('#module-select-'+y+'-'+s).html('');
+  $('#module-select-'+y+'-'+s).append('<option value=""></option>');
+  values.forEach(function(value) {
+    $('#module-select-'+y+'-'+s).append('<option value="'+value+'">'+value+'</option>');
+  });
+  $('#module-select-'+y+'-'+s).val('').trigger("chosen:updated");
+
+  $('#module-select-'+y+'-'+s).chosen({'width': '100%', 'white-space': 'nowrap'});
+  $('#module-select-'+y+'-'+s).on('change', function(e) {
+    var code = $(e.currentTarget).val().split(' - ')[0];
+    var availableTypes = modules[code].type;
+    // Reset the options.
+    $('#module-select-type-'+y+'-'+s).html('');
+    availableTypes.forEach(function(value) {
+      $('#module-select-type-'+y+'-'+s).append('<option value="'+value+'">'+value+'</option>');
+    });
+    $('#module-select-type-'+y+'-'+s).prop('disabled', false);
+    $('#module-select-type-'+y+'-'+s).val('').trigger("chosen:updated");
+  });
+
+  $('#module-select-type-'+y+'-'+s).chosen({'width': '100%', 'white-space': 'nowrap'});
+
+  $('#module-select-type-'+y+'-'+s).on('change', function() {
+    $('.js-new-module-'+y+'-'+s).prop('disabled', false);
+  });
+
+  $('.js-new-module-'+y+'-'+s).click(function(e) {
+    var code = $('#module-select-'+y+'-'+s).val().split(' - ')[0];
+    var type = $('#module-select-type-'+y+'-'+s).val();
+    if (code && type) {
+      var year = $(this).data('year');
+      var semester = $(this).data('semester');
+
+      futureModules[code].year = year;
+      futureModules[code].semester = semester;
+      futureModules[code].chosenType = type;
+      $('#module-select-type-'+y+'-'+s).prop('disabled', true);
+      $('.js-new-module-'+y+'-'+s).prop('disabled', true);
+      $('#module-select-'+y+'-'+s).val('').trigger("chosen:updated");
+      $('#module-select-type-'+y+'-'+s).val('').trigger("chosen:updated");
+      initModulesList();
+    }
+    console.log();
+  });
 }
 
 var pastModules = {
@@ -498,5 +601,32 @@ var modules = {
     "type": ["Core", "UE", "Breadth"],
     "credits": 4,
     "workload": "5-4-3-2-4"
+  }
+};
+
+var futureModules = {
+  "CS5321": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": ""
+  },
+  "CS5331": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": ""
+  },
+  "IS4231": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": ""
+  },
+  "IS4232": {
+    "chosenType": "",
+    "expectedGrade": "",
+    "year": "",
+    "semester": ""
   }
 };

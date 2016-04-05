@@ -1,5 +1,6 @@
 .left-column {
     padding: 10px;
+    padding-bottom: 100px;
 }
 
 .right-column {
@@ -35,6 +36,11 @@
 
 .module-name-column {
     width: 40%;
+}
+
+.add-module-btn-container {
+    height: 58px;
+    padding-top: 23px;
 }
 
 /* CAP CSS */
