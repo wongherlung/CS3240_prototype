@@ -185,20 +185,23 @@ function generateFutureSemsTable(year, semester) {
   futureSemesterTemplate += '<table class="table">';
   futureSemesterTemplate += '<thead>';
   futureSemesterTemplate += '<tr>';
-  futureSemesterTemplate += '<td>Module Code</td>';
-  futureSemesterTemplate += '<td>Name</td>';
+  futureSemesterTemplate += '<td class="module-code-column">Module Code</td>';
+  futureSemesterTemplate += '<td class="module-name-column">Name</td>';
   futureSemesterTemplate += '<td align="center">Type</td>';
   // TODO: Insert Tooltip here
   futureSemesterTemplate += '<td align="center">Workload</td>';
   futureSemesterTemplate += '<td align="center">Credits</td>';
-  futureSemesterTemplate += '<td align="center">Grade to Obtain</td>';
+  futureSemesterTemplate += '<td align="center" style="width: 10%;">Grade to Obtain</td>';
   futureSemesterTemplate += '</tr>';
   futureSemesterTemplate += '</thead>';
   futureSemesterTemplate += '<tbody>';
 
+  var hasAtLeastOneModule = false;
+
   for (var moduleCode in futureModules) {
     var futureModule = futureModules[moduleCode];
     if (futureModule.year == year && futureModule.semester == semester && modules[moduleCode]) {
+      hasAtLeastOneModule = true;
       futureSemesterTemplate += '<tr>';
       futureSemesterTemplate += '<td align="right">'+moduleCode+'</td>';
       futureSemesterTemplate += '<td>'+modules[moduleCode].name+'</td>';
@@ -206,17 +209,84 @@ function generateFutureSemsTable(year, semester) {
       futureSemesterTemplate += '<td align="center"><span class="label ' + type + ' " style="margin-right: 5px;">' + type + '</span></td>';
       futureSemesterTemplate += '<td align="center">'+modules[moduleCode].workload+'</td>';
       futureSemesterTemplate += '<td align="center">'+modules[moduleCode].credits+'</td>';
-      futureSemesterTemplate += '<td align="center">-</td>';
+      futureSemesterTemplate += '<td align="center">';
+      futureSemesterTemplate += '<select class="grade-'+year+'-'+semester+'" data-code="'+moduleCode+'">';
+      futureSemesterTemplate += '<option value="">-</option>';
+      futureSemesterTemplate += '<option value="A+">A+</option>';
+      futureSemesterTemplate += '<option value="A">A</option>';
+      futureSemesterTemplate += '<option value="A-">A-</option>';
+      futureSemesterTemplate += '<option value="B+">B+</option>';
+      futureSemesterTemplate += '<option value="B">B</option>';
+      futureSemesterTemplate += '<option value="B-">B-</option>';
+      futureSemesterTemplate += '<option value="C+">C+</option>';
+      futureSemesterTemplate += '<option value="C">C</option>';
+      futureSemesterTemplate += '<option value="D+">D+</option>';
+      futureSemesterTemplate += '<option value="D">D</option>';
+      futureSemesterTemplate += '</select>';
+      futureSemesterTemplate += '</td>';
       futureSemesterTemplate += '</tr>';
     }
+  }
+
+  if (year == 3 && semester == 2) {
+    futureSemesterTemplate += '<tr>';
+    futureSemesterTemplate += '<td class="expected-cap" colspan="6" style="text-align: right;" ">';
+    futureSemesterTemplate += 'Expected CAP after this semester: -';
+    futureSemesterTemplate += '</td>';
+    futureSemesterTemplate += '</tr>';
+  }
+
+  if (!hasAtLeastOneModule) {
+    return;
   }
 
   futureSemesterTemplate += '</tbody>';
   futureSemesterTemplate += '</table>';
   $('.year'+year+'semester'+semester+'-table').append(futureSemesterTemplate);
 
-  var newModuleHtml = '';
 
+  $('.grade-'+year+'-'+semester).change(function(e) {
+    futureModules[$(this).data('code')].expectedGrade = $(this).val();
+    if (year == 3 && semester == 2) {
+      updateExpectedCAPForThisSem();
+    }
+  });
+
+  // Update expected grade if there is an expected grade in storage
+  for (var moduleCode in futureModules) {
+    var futureModule = futureModules[moduleCode];
+    if (futureModule.year == year && futureModule.semester == semester && modules[moduleCode]) {
+      if (futureModule.expectedGrade) {
+        var grades = $('.grade-'+year+'-'+semester);
+        for (var i = 0; i < grades.length; i++) {
+          var grade = grades[i];
+          if ($(grade).data('code') == moduleCode) {
+            $(grade).val(futureModule.expectedGrade);
+          }
+        }
+      }
+    }
+  }
+
+  if (year == 3 && semester == 2) {
+    updateExpectedCAPForThisSem();
+  }
+}
+
+function updateExpectedCAPForThisSem() {
+  var numberOfModules = 0;
+  var totalPointsThisSem = 0;
+  for (var code in futureModules) {
+    var module = futureModules[code];
+    if (module.year == 3 && module.semester == 2) {
+      if (getPointFromGrade(module.expectedGrade) != 0) {
+        numberOfModules++;
+        totalPointsThisSem += getPointFromGrade(module.expectedGrade);
+      }
+    }
+  }
+  var expectedCAP = (4 + totalPointsThisSem / numberOfModules) / 2;
+  $('.expected-cap').html('Expected CAP after this semester: ' + expectedCAP.toFixed(2));
 }
 
 function attachAutoCompleteToSearchModuleInput(y, s) {
@@ -272,6 +342,33 @@ function attachAutoCompleteToSearchModuleInput(y, s) {
       initSuggestionsWindow();
     }
   });
+}
+
+function getPointFromGrade(grade) {
+  switch (grade) {
+    case 'A+':
+      return 5;
+    case 'A':
+      return 5;
+    case 'A-':
+      return 4.5;
+    case 'B+':
+      return 4;
+    case 'B':
+      return 3.5;
+    case 'B-':
+      return 3;
+    case 'C+':
+      return 3.5;
+    case 'C':
+      return 2;
+    case 'D+':
+      return 1.5;
+    case 'D':
+      return 1;
+    default:
+      return 0
+  }
 }
 
 var pastModules = {
