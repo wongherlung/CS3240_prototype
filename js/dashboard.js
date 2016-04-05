@@ -8,6 +8,7 @@ $(document).ready(function() {
   capWindowEvents();
 
   initSuggestionsWindow();
+  $(".right-column").stickThis({top:0});
 
   initCollapsibleContainers();
 });
