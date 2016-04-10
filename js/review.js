@@ -6,6 +6,9 @@ $('#submit-review').click(function(){
     buttonSubmit.prop('disabled', false);
 });
 
+$('#show-modal-btn').click(function() {
+  $('#create-review-modal').modal('show');
+});
 
 var modules = {
   "CS1101S": {
