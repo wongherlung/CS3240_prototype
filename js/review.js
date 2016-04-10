@@ -1,0 +1,227 @@
+
+$('#submit-review').click(function(){
+    //$('.warning-box').html('');
+    //$('.warning-box').hide();
+    var buttonSubmit = $('#module-review-select');
+    buttonSubmit.prop('disabled', false);
+});
+
+
+var modules = {
+  "CS1101S": {
+    "name": "Programming Methodology",
+    "type": ["Core"],
+    "credits": 5,
+    "workload": "5-4-3-2-4"
+  },
+  "CS1231": {
+    "name": "Discrete Structures",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "MA1521": {
+    "name": "Calculus for Computing",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "MA1101R": {
+    "name": "Linear Algebra",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "TR2201": {
+    "name": "Entreprenuerial Marketing",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "LSM1302": {
+    "name": "Genes and Society",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "ST2334": {
+    "name": "Probability and Statistics",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "IS1103": {
+    "name": "Computing and Society",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2020": {
+    "name": "Data Structures and Algorithm (Advanced)",
+    "type": ["Core"],
+    "credits": 6,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2100": {
+    "name": "Computer Organization",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2101": {
+    "name": "Effective Communication for Computing Professionals",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2103T": {
+    "name": "Software Engineering",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3216": {
+    "name": "Software Development on Evolving Platforms",
+    "type": ["Core"],
+    "credits": 5,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2102": {
+    "name": "Database Systems",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2105": {
+    "name": "Introduction to Computer Networks",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2106": {
+    "name": "Introduction to Operating Systems",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS2107": {
+    "name": "Information Security",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3230": {
+    "name": "Design and Analysis of Algorithms",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "LSM1303": {
+    "name": "Animal Behavior",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3235": {
+    "name": "Introduction to Computer Security",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3103": {
+    "name": "Computer Networks and Protocols",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "LSM1301": {
+    "name": "General Biology",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "GEK1520": {
+    "name": "Understanding the Universe",
+    "type": ["GEM", "UE"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS4236": {
+    "name": "Cryptography Theory and Practice",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3217": {
+    "name": "Software Engineering on Modern Application Platforms",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS3240": {
+    "name": "Interaction Design",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "GEK1001": {
+    "name": "Geographical Journeys: Exploring World Environments",
+    "type": ["GEM", "UE"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS4238": {
+    "name": "Computer Security Practice",
+    "type": ["Core"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS5321": {
+    "name": "Network Security",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CS5331": {
+    "name": "Web Security",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "IS4231": {
+    "name": "Information Security Management",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "IS4232": {
+    "name": "Topics in Information Security",
+    "type": ["Core", "UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "ACC1002": {
+    "name": "Financial Accounting",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "ACC1006": {
+    "name": "Accounting Information Systems",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CG1108": {
+    "name": "Electrical Engineering",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  },
+  "CG2023": {
+    "name": "Signals and System",
+    "type": ["UE", "Breadth"],
+    "credits": 4,
+    "workload": "5-4-3-2-4"
+  }
+};
