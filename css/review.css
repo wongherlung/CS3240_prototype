@@ -133,7 +133,51 @@
     border-top-width: 10px;
 }
 
-.warning-text-container {
+#warning-text {
     padding-left: 200px;
     padding-right: 200px;
+}
+
+.list-of-reviews {
+    font-size: 12pt;
+}
+
+#matric {
+    font-size: 16pt;
+}
+
+.review-item {
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-top-color: #A0A0A0;
+}
+
+.very-easy {
+    background-color: #66FF66;
+}
+
+.easy {
+    background-color: #CCFF66;
+}
+
+.moderate {
+    background-color: #FFCC66;
+}
+
+.difficult {
+    background-color: #FF9900;
+}
+
+.very-difficult {
+    background-color: #FF3300;
+}
+
+.search-review-box, .filter-box {
+    height: 180px;
+}
+
+#sem-taken-filter, #diff-filter, #recommendation-filter {
+    border-radius: 0;
+    -webkit-appearance: none;
 }

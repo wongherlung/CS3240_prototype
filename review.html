@@ -43,7 +43,7 @@
     <div class="col-md-10 col-centered">
         <div class="row">
             <div class="col-md-6">
-                <div class="modules-container box">
+                <div class="modules-container box search-review-box">
                     <h3>Search for Reviews</h3>
                     <div class="col-md-8 form-group">
                         <select disabled class="select-mod form-control" data-placeholder="Select a module" id="module-review-select">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="modules-container box text-center">
+                <div class="modules-container box text-center filter-box">
                     <h3>Filter</h3>
                     <div class="row">
                         <div class="col-md-3 form-group">
@@ -82,7 +82,7 @@
                             <label for="recommendation">Rating :</label>
                             <select disabled class="form-control" id="recommendation-filter">
                                 <option value=""></option>
-                                <option value="1">1 - Not At All</option>
+                                <option value="1">1 - Highly Not Recommended</option>
                                 <option value="2">2 - Not Recommended</option>
                                 <option value="3">3 - Neutral</option>
                                 <option value="4">4 - Recommended</option>
@@ -96,14 +96,19 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-md-12 modules-container text-center warning-box mt20" id="main-review-box">
-            <div class="col-md-12 warning-text-container">
-            <h4 id="warning-text">You have not submitted a review yet. To be able to view other user-submitted review, please proceed to make a review first</h4>    
-            </div>
+            <h3 id="review-header"></h3>
+            <h4 id="warning-text">You have not submitted a review yet. To be able to view other user-submitted review, please proceed to make a review first.</h4>   
+            
+            <div class="list-of-reviews text-left"></div>
+            
             <div class="col-md-12 form-group">
                 <button type="button" class="btn btn-success" id="show-modal-btn">Submit a review</button>
             </div>
-        </div>                  
+            
+        </div>
+        
     </div>
 </div>
     
@@ -119,12 +124,6 @@
                 <div class="form-group">
                     <label for="select-module-for-review">Select module :</label>
                     <select class="form-control" id="select-module-for-review">
-                        <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
                     </select>
                 </div>
                 <!--rate difficulty & recommendation-->
@@ -141,7 +140,7 @@
                 <div class="col-md-6 form-group">
                     <label for="rate-recommendation">Recommended?</label>
                     <select class="form-control" id="rate-recommendation">
-                        <option value="1">1 - Not At All</option>
+                        <option value="1">1 - Highly Not Recommended</option>
                         <option value="2">2 - Not Recommended</option>
                         <option value="3">3 - Neutral</option>
                         <option value="4">4 - Recommended</option>
@@ -150,7 +149,7 @@
                 </div>
                 <!--Comment for review-->
                 <div class="form-group">
-                    <label for="comment">Comment:</label>
+                    <label for="comment">Comment :</label>
                     <textarea class="form-control" rows="8" id="comment"></textarea>
                 </div>
             </div>
