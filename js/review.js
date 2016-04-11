@@ -1,15 +1,28 @@
 
-$('#submit-review').click(function(){
+$(document).ready(function() {
+  $('#submit-review').click(function(){
     //$('.warning-box').html('');
     //$('.warning-box').hide();
     var buttonSubmit = $('#module-review-select');
     buttonSubmit.prop('disabled', false);
-});
+  });
 
-$('#module-review-select').chosen({'width': '100%', 'white-space': 'nowrap'});
+  var moduleCodes = Object.keys(modules);
+  var values = moduleCodes.map(function(code) {
+    return code + ' - ' + modules[code].name;
+  });
 
-$('#show-modal-btn').click(function() {
-  $('#create-review-modal').modal('show');
+  $('#module-review-select').html('');
+  $('#module-review-select').append('<option value=""></option>');
+  values.forEach(function(value) {
+    $('#module-review-select').append('<option value="'+value+'">'+value+'</option>');
+  });
+
+  $('#module-review-select').chosen({'width': '100%', 'white-space': 'nowrap'});
+
+  $('#show-modal-btn').click(function() {
+    $('#create-review-modal').modal('show');
+  });
 });
 
 var modules = {
