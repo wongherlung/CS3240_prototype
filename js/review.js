@@ -1,11 +1,63 @@
 
 $(document).ready(function() {
-  $('#submit-review').click(function(){
-    //$('.warning-box').html('');
-    //$('.warning-box').hide();
-    var buttonSubmit = $('#module-review-select');
-    buttonSubmit.prop('disabled', false);
-  });
+  $('#submit-review-btn').click(function(){
+    $('#create-review-modal').modal('hide');
+    var successText = 'Your review has been submitted! <br>You can now search for reviews by selecting the module in search bar above. Or you can click below button to create more reviews.</br>'
+    $('#warning-text').html(successText);
+    $('#module-review-select').prop('disabled', false);
+    $('#search-review-btn').prop('disabled', false);
+    $('#main-review-box').css('border-top-color', '#F6BB42');
+})
+  
+  $('#search-review-btn').click(function(){
+    $('#sem-taken-filter').prop('disabled', false);
+    $('#diff-filter').prop('disabled', false);
+    $('#recommendation-filter').prop('disabled', false);
+    $('#apply-filter-btn').prop('disabled', false);
+    var input = $('#module-review-select').val();
+    generateReview(input);
+})
+
+function generateReview(code) {
+    $('.warning-text-container').css('padding-left', '50px');
+    $('.warning-text-container').css('padding-right', '50px');
+    $('#warning-text').remove();
+    $('#show-modal-btn').remove();
+    if($('#review-header').length){
+        $('#review-header').remove();
+    }
+    $('#main-review-box').append('<h3 id="review-header">Review(s) for '+code+'</h3>');
+    var reviewTemplate = '';
+    reviewTemplate += '<table class="table">';
+    
+    var tempcode = reviews[code];
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">Matric No. :</td>';
+    reviewTemplate += '<td align="left">'+tempcode.matric+'</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">Sem taken :</td>';
+    reviewTemplate += '<td align="left">'+tempcode.sem+'</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">Difficulty :</td>';
+    reviewTemplate += '<td align="left">'+tempcode.difficulty+'</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">Rating :</td>';
+    reviewTemplate += '<td align="left">'+tempcode.recommendation+'</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">Comment :</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '</table>';
+    reviewTemplate += '<table>';
+    reviewTemplate += '<tr>';
+    reviewTemplate += '<td align="left">'+tempcode.comment+'</td>';
+    reviewTemplate += '</tr>';
+    reviewTemplate += '</table>';
+    $('#main-review-box').append(reviewTemplate);
+}
 
   var moduleCodes = Object.keys(modules);
   var values = moduleCodes.map(function(code) {
@@ -24,6 +76,23 @@ $(document).ready(function() {
     $('#create-review-modal').modal('show');
   });
 });
+
+var reviews = {
+    "CS1231": {
+        "matric": "A0098103J",
+        "sem": "2",
+        "difficulty": "3 - Moderate",
+        "recommendation": "4 - Recommended",
+        "comment": "This module is very fun and not that difficult compared to other CS modules. The lecturer is very fun although sometimes he could give us challenging problems. All in all, this module is recommended to take!"
+    },
+    "IS4221": {
+        "matric": "A0098103J",
+        "sem": "1",
+        "difficulty": "4 - Somewhat Difficult",
+        "recommendation": "2 - Not Recommended",
+        "comment": "Lecturer is very lousy. Don't take this unless you really don't have other mods to take!!!!"
+    }
+}
 
 var modules = {
   "CS1101S": {

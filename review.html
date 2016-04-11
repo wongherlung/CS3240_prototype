@@ -120,11 +120,48 @@
                 <h4 class="modal-title">Create Review</h4>
             </div>
             <div class="modal-body">
-                <p>Some content</p>
+                <!--select from previously taken mods-->
+                <div class="form-group">
+                    <label for="select-module-for-review">Select module :</label>
+                    <select class="form-control" id="select-module-for-review">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <!--rate difficulty & recommendation-->
+                <div class="col-md-6 form-group">
+                    <label for="rate-difficulty">Difficulty :</label>
+                    <select class="form-control" id="rate-difficulty">
+                        <option value="1">1 - Very Easy</option>
+                        <option value="2">2 - Somewhat Easy</option>
+                        <option value="3">3 - Moderate</option>
+                        <option value="4">4 - Somewhat Difficult</option>
+                        <option value="5">5 - Very Diificult</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="rate-recommendation">Recommended?</label>
+                    <select class="form-control" id="rate-recommendation">
+                        <option value="1">1 - Not At All</option>
+                        <option value="2">2 - Not Recommended</option>
+                        <option value="3">3 - Neutral</option>
+                        <option value="4">4 - Recommended</option>
+                        <option value="5">5 - Highly Recommended</option>
+                    </select>
+                </div>
+                <!--Comment for review-->
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="8" id="comment"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-success" id="submit-review-btn">Submit</button>
             </div>
         </div>
     </div>
