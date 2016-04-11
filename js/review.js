@@ -1,6 +1,25 @@
 
 $(document).ready(function() {
-  $('#submit-review-btn').click(function(){
+
+  var moduleCodes = Object.keys(modules);
+  var values = moduleCodes.map(function(code) {
+    return code + ' - ' + modules[code].name;
+  });
+
+  $('#module-review-select').html('');
+  $('#module-review-select').append('<option value=""></option>');
+  values.forEach(function(value) {
+    $('#module-review-select').append('<option value="'+value+'">'+value+'</option>');
+  });
+
+  $('#module-review-select').chosen({'width': '100%', 'white-space': 'nowrap'});
+
+  $('#show-modal-btn').click(function() {
+    $('#create-review-modal').modal('show');
+  });
+});
+
+$('#submit-review-btn').click(function(){
     $('#create-review-modal').modal('hide');
     var successText = 'Your review has been submitted! <br>You can now search for reviews by selecting the module in search bar above. Or you can click below button to create more reviews.</br>'
     $('#warning-text').html(successText);
@@ -58,24 +77,6 @@ function generateReview(code) {
     reviewTemplate += '</table>';
     $('#main-review-box').append(reviewTemplate);
 }
-
-  var moduleCodes = Object.keys(modules);
-  var values = moduleCodes.map(function(code) {
-    return code + ' - ' + modules[code].name;
-  });
-
-  $('#module-review-select').html('');
-  $('#module-review-select').append('<option value=""></option>');
-  values.forEach(function(value) {
-    $('#module-review-select').append('<option value="'+value+'">'+value+'</option>');
-  });
-
-  $('#module-review-select').chosen({'width': '100%', 'white-space': 'nowrap'});
-
-  $('#show-modal-btn').click(function() {
-    $('#create-review-modal').modal('show');
-  });
-});
 
 var reviews = {
     "CS1231": {

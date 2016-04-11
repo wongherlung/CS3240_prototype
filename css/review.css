@@ -132,3 +132,8 @@
     border-top-style: solid;
     border-top-width: 10px;
 }
+
+.warning-text-container {
+    padding-left: 200px;
+    padding-right: 200px;
+}
