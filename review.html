@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="sem-taken">Semester :</label>
-                            <select disabled class="form-control" id="sem-taken">
+                            <select disabled class="form-control" id="sem-taken-filter">
                                 <option value=""></option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -69,28 +69,28 @@
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="diff">Difficulty :</label>
-                            <select disabled class="form-control" id="diff">
+                            <select disabled class="form-control" id="diff-filter">
                                 <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+                                <option value="1">1 - Very Easy</option>
+                                <option value="2">2 - Somewhat Easy</option>
+                                <option value="3">3 - Moderate</option>
+                                <option value="4">4 - Somewhat Difficult</option>
+                                <option value="5">5 - Very Diificult</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="recommendation">Rating :</label>
-                            <select disabled class="form-control" id="recommendation">
+                            <select disabled class="form-control" id="recommendation-filter">
                                 <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+                                <option value="1">1 - Not At All</option>
+                                <option value="2">2 - Not Recommended</option>
+                                <option value="3">3 - Neutral</option>
+                                <option value="4">4 - Recommended</option>
+                                <option value="5">5 - Highly Recommended</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
-                            <button disabled type="button" class="btn btn-success">Go</button>
+                            <button disabled type="button" class="btn btn-success" id="apply-filter-btn">Apply</button>
                         </div>
                     </div>
                 </div>
