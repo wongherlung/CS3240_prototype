@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/base.css">
 <!--
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -21,12 +22,14 @@
 
 <body>
 	<div class="container center-block">
-		<div class="login-box animated fadeInUp" id="loginBox">
+		<div class="box login-box animated fadeInUp" id="loginBox">
+<!--
 			<div class="box-header">
 				<h1>NUS Modules Tracker</h1>
 			</div>
+-->
 			<form action="./dashboard.html">
-				<label for="username">Matric No.</label>
+				<label for="username">NUSNET ID</label>
 				<br/>
 				<input type="text" id="username">
 				<br/>
@@ -34,7 +37,7 @@
 				<br/>
 				<input type="password" id="password">
 				<br/>
-				<button id="login-btn" type="submit">Sign In</button>
+				<button class="btn btn-success" id="login-btn" type="submit">Sign In</button>
 				<br/>
 				<a href="#"><p class="small">Forgot your password?</p></a>
 				</form>

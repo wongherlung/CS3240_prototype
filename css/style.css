@@ -11,6 +11,7 @@ body {
 	font-weight: 250;
 	margin: 0;
 	color: #666;
+    padding-top: 150px;
 }
 
 /* Typography */
@@ -64,8 +65,6 @@ p.small {
 	max-width: 500px;
 	margin: 0 auto;
 	position: relative;
-	top: 150px;
-/*    transform: translateY(-50%)*/
 	padding-bottom: 30px;
 	border-radius: 5px;
 	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
@@ -103,6 +102,7 @@ p.small {
 	color: #665851;
 }
 
+/*
 .login-box button {
 	margin-top: 0px;
 	border: 0;
@@ -117,6 +117,7 @@ p.small {
 	cursor:pointer;
 	outline: none;
 }
+*/
 
 .login-box button:hover {
 	opacity: 0.7;
