@@ -25,19 +25,22 @@
 			<div class="box-header">
 				<h1>NUS Modules Tracker</h1>
 			</div>
-			<label for="username">Username</label>
-			<br/>
-			<input type="text" id="username">
-			<br/>
-			<label for="password">Password</label>
-			<br/>
-			<input type="password" id="password">
-			<br/>
-			<button type="submit">Sign In</button>
-			<br/>
-			<a href="#"><p class="small">Forgot your password?</p></a>
+			<form action="./dashboard.html">
+				<label for="username">Matric No.</label>
+				<br/>
+				<input type="text" id="username">
+				<br/>
+				<label for="password">Password</label>
+				<br/>
+				<input type="password" id="password">
+				<br/>
+				<button id="login-btn" type="submit">Sign In</button>
+				<br/>
+				<a href="#"><p class="small">Forgot your password?</p></a>
+				</form>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 </body>
 
 <script>
@@ -53,6 +56,7 @@
 	$('#password').blur(function() {
 		$('label[for="password"]').removeClass('selected');
 	});
+
 </script>
 
 </html>
