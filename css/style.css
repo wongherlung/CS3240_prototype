@@ -54,7 +54,7 @@ p.small {
 
 /* Layout */
 .container {
-	margin: 0;
+	margin: 0 auto;
 }
 
 .top {
@@ -70,11 +70,11 @@ p.small {
 
 .login-box {
 	background-color: white;
-	max-width: 500px;
+	max-width: 500px !important;
 	margin: 0 auto;
 	position: relative;
 	padding-bottom: 30px;
-	border-radius: 5px;
+	border-radius: 0px;
 	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
 	text-align: center;
 }
@@ -98,16 +98,17 @@ p.small {
 
 .login-box input {
 	margin-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
 	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+	border-radius: 0px;
 	font-size: .9em;
 	color: #888;
+	width: 300px;
 }
 
 .login-box input:focus {
 	outline: none;
-	border-color: #665851;
 	transition: 0.5s;
 	color: #665851;
 }

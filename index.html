@@ -9,7 +9,8 @@
 	 // Google Fonts 
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
 -->
-
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootflat.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
@@ -23,23 +24,18 @@
 <body>
 	<div class="container center-block">
 		<div class="boxLogin login-box animated fadeInUp" id="loginBox">
-            
-			<form name="Form" action="./dashboard.html">
-                <div class="box-header">
-                    <h2>NUS Modules Tracker</h2>
-                </div>
+            <div class="box-header">
+                <h2>NUS Modules Tracker</h2>
+            </div>
+            <div class="form-group">
 				<label for="username">NUSNET ID</label>
-				<br/>
-				<input type="text" name="name" id="username">
-				<br/>
+				<input type="text" name="name" class="form-control" id="username">
 				<label for="password">Password</label>
-				<br/>
-				<input type="password" name="id" id="password">
-				<br/>
-				<button class="btn btn-success" id="login-btn" onsubmit="return validateForm()" action="" type="submit">Sign In</button>
-				<br/>
-				<a href="https://myaces.nus.edu.sg/passwordreset/index.html"><p class="small">Forgot your password?</p></a>
-				</form>
+				<input type="password" class="form-control" name="id" id="password">
+				<button class="btn btn-success" id="login-btn" type="submit">Sign In</button>
+			</div>	
+			<div class="error-message" style="color: #DA4453;"></div>
+			<a href="https://myaces.nus.edu.sg/passwordreset/index.html"><p class="small">Forgot your password?</p></a>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -58,12 +54,14 @@
 	$('#password').blur(function() {
 		$('label[for="password"]').removeClass('selected');
 	});
-    $('login-btn').click(function(){
-        var username=document.forms["Form"]["name"].value;
-        var password=document.forms["Form"]["id"].value;
-        if (username==null || password==null){
-            alert("Please fill in all required fields");
-            return false;
+    $('#login-btn').click(function(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        if (!username || !password){
+            $('.form-group').addClass('has-error');
+            $('.error-message').html('Username and password do not match.');
+        } else {
+        	window.location.href = "./dashboard.html";
         }
     });
     
