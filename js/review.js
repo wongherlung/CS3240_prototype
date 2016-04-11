@@ -6,6 +6,8 @@ $('#submit-review').click(function(){
     buttonSubmit.prop('disabled', false);
 });
 
+$('#module-review-select').chosen({'width': '100%', 'white-space': 'nowrap'});
+
 $('#show-modal-btn').click(function() {
   $('#create-review-modal').modal('show');
 });
