@@ -61,6 +61,7 @@ html, body {
     border-top-style: solid;
     border-top-width: 10px;
     max-width: 350px;
+    margin-top: 200px;
 }
 
 small {
