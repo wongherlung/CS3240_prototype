@@ -15,6 +15,7 @@ body {
 }
 
 /* Typography */
+/*
 h1 {
 	font-family: 'Raleway';
 	font-weight: normal;
@@ -28,6 +29,7 @@ h1 {
 	top: 0px;
     white-space: nowrap;
 }
+*/
 
 a {
 	text-decoration: none;
@@ -71,11 +73,13 @@ p.small {
 	text-align: center;
 }
 
+/*
 .login-box .box-header {
 	background-color: #FFCE54;
 	margin-top: 0;
 	border-radius: 5px 5px 0 0;
 }
+*/
 
 .login-box label {
 	font-weight: 700;

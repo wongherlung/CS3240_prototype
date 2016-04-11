@@ -9,7 +9,7 @@
 }
 
 html, body {
-/*    background-color: #eaeaea;*/
+    background-color: #eaeaea;
     font-family: Raleway;
 }
 
@@ -53,6 +53,14 @@ html, body {
     border-top-color: #F6BB42;
     border-top-style: solid;
     border-top-width: 10px;
+}
+
+.boxLogin {
+    background-color: white;
+    border-top-color: #F6BB42;
+    border-top-style: solid;
+    border-top-width: 10px;
+    max-width: 350px;
 }
 
 small {
