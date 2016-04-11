@@ -24,6 +24,7 @@ $('#submit-review-btn').click(function(){
     var successText = 'Your review has been submitted! <br>You can now search for reviews by selecting the module in search bar above. Or you can click below button to create more reviews.</br>'
     $('#warning-text').html(successText);
     $('#module-review-select').prop('disabled', false);
+    $('#module-review-select').trigger("chosen:updated");
     $('#search-review-btn').prop('disabled', false);
     $('#main-review-box').css('border-top-color', '#F6BB42');
 })
