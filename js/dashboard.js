@@ -3,12 +3,11 @@ $(document).ready(function() {
   initUserDefaults();
 
   initModulesList();
-
+  $(".right-column").stickThis({top:0});
   initCAPWindow();
   capWindowEvents();
 
   initSuggestionsWindow();
-  $(".right-column").stickThis({top:0});
 
   initCollapsibleContainers();
 });
@@ -60,12 +59,12 @@ function initCollapsibleContainers() {
 
 function capWindowEvents() {
   // Show the hidden CAP
-  $('#hidden-cap').click(function() {
+  $('.hidden-cap').click(function() {
     this.remove();
     $('.js-current-cap').html('4.00');
   });
 
-  $('#js-edit-goal-cap').click(function(e) {
+  $('.js-edit-goal-cap').click(function(e) {
     e.preventDefault();
 
     $('#edit-goal-cap-modal').modal();
