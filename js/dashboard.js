@@ -72,17 +72,73 @@ function initCollapsibleContainers() {
 function capWindowEvents() {
   // Show the hidden CAP
   $('.hidden-cap').click(function() {
-    this.remove();
-    $('.js-current-cap').html('4.00');
+    $(this).addClass('hidden');
+    $('.shown-cap').removeClass('hidden');
+  });
+
+  $('.shown-cap').click(function() {
+    $(this).addClass('hidden');
+    $('.hidden-cap').removeClass('hidden');
   });
 
   $('.js-edit-goal-cap').click(function(e) {
     e.preventDefault();
 
+    $('#edit-goal-cap-modal').on('shown.bs.modal', function () {
+      $('#goal-cap-field-1').focus();
+      $('#goal-cap-field-1').select();
+
+      $('#goal-cap-field-1').keyup(function(e) {
+        if ((e.keyCode >= 48 && e.keyCode <= 53) || (e.keyCode >= 96 && e.keyCode <= 101)) {
+          $('#goal-cap-field-2').focus();
+          $('#goal-cap-field-2').select();
+        } else {
+          $(e.target).val('');
+        }
+      });
+
+      $('#goal-cap-field-2').keyup(function(e) {
+        if ($('#goal-cap-field-1').val() == 5) {
+          if ((e.keyCode == 48) || (e.keyCode == 96)) {
+            $('#goal-cap-field-3').focus();
+            $('#goal-cap-field-3').select();
+          } else {
+            $(e.target).val('');
+          }
+        } else {
+          if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+            $('#goal-cap-field-3').focus();
+            $('#goal-cap-field-3').select();
+          } else {
+            $(e.target).val('');
+          }
+        }
+      });
+
+      $('#goal-cap-field-3').keyup(function(e) {
+        if ($('#goal-cap-field-1').val() == 5) {
+          if ((e.keyCode == 48) || (e.keyCode == 96)) {
+
+          } else {
+            $(e.target).val('');
+          }
+        } else {
+          if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+
+          } else {
+            $(e.target).val('');
+          }
+        }
+      });
+    });
+
     $('#edit-goal-cap-modal').modal();
 
     // Populate the field in the edit goal CAP modal
-    $('.goal-cap-input').val(parseFloat(get('goal_cap')).toFixed(2));
+    var digits = parseFloat(get('goal_cap')).toFixed(2) + "";
+    $('#goal-cap-field-1').val(parseInt(digits[0]));
+    $('#goal-cap-field-2').val(parseInt(digits[2]));
+    $('#goal-cap-field-3').val(parseInt(digits[3]));
 
     // In case user makes error and clicks Cancel.
     $('.js-close-cap-modal').click(function() {
@@ -94,8 +150,8 @@ function capWindowEvents() {
       processNewCAPEntered();
     });
 
-    $('.goal-cap-input').keypress(function(event){
-      var keycode = (event.keyCode ? event.keyCode : event.which);
+    $('.goal-cap-input').keypress(function(e){
+      var keycode = (e.keyCode ? e.keyCode : e.which);
       if(keycode == '13'){
         processNewCAPEntered();
       }
@@ -109,7 +165,7 @@ function resetGoalCAPValidation() {
 }
 
 function processNewCAPEntered() {
-  var newValue = $('.goal-cap-input').val();
+  var newValue = parseFloat($('#goal-cap-field-1').val() + "." + $('#goal-cap-field-2').val() + "" + $('#goal-cap-field-3').val()).toFixed(2);
 
   // Validation check for Goal CAP
   if (isNaN(newValue) || parseFloat(newValue) < 0 || parseFloat(newValue) > 5) {

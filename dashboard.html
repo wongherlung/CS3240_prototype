@@ -156,7 +156,7 @@
             <div class="cap-container col-md-12 box text-center">
                 <h3>Overview</h3>
                 <div class="col-md-6 cap-text text-center">Current CAP :</div>
-                <div class="col-md-6 cap-value text-center js-current-cap"><span id="hidden-cap" class="hidden-cap">(click to show)</span></div>
+                <div class="col-md-6 cap-value text-center js-current-cap"><span id="hidden-cap" class="hidden-cap">(click to show)</span><span class="hidden shown-cap">4.00</span></div>
 
                 <div class="col-md-6 cap-text text-center" id="goal-cap-value">Goal CAP :<br><a href="#" style="font-size: 0.6em;" class="js-edit-goal-cap">Edit</a></div>
                 <div class="col-md-6 cap-value text-center js-goal-cap-value"></div>
@@ -194,10 +194,22 @@
             <div class="modal-body">
 
                 <div class="form-group goal-cap-form-group">
+                    <label for="goal-cap-field-1">Goal CAP <small style="font-size: 0.75em;">(Please enter in a value between 0 to 5.)</small></label>
+                    <input type="text" class="form-control goal-cap-input" id="goal-cap-field-1" maxlength="1" onClick="this.select();">
+                    <svg height="80" width="25" style="top: 10px; position: relative;">
+                        <circle cx="12.5" cy="75" r="2" stroke="black" stroke-width="3" fill="black" />
+                    </svg>
+                    <input type="text" class="form-control goal-cap-input" id="goal-cap-field-2" maxlength="1" onClick="this.select();">
+                    <input type="text" class="form-control goal-cap-input" id="goal-cap-field-3" maxlength="1" onClick="this.select();">
+                    <div class="error-message-box"></div>
+                </div> 
+                <!--
+                <div class="form-group goal-cap-form-group">
                     <label for="goal-cap-field">Goal CAP <small style="font-size: 0.75em;">(Please enter in a value between 0 to 5.)</small></label>
                     <input type="text" class="form-control goal-cap-input" id="goal-cap-field" onclick="this.select()">
                     <div class="error-message-box"></div>
                 </div>
+                -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default js-close-cap-modal" data-dismiss="modal">Close</button>
