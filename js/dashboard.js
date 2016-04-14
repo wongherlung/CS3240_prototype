@@ -44,14 +44,26 @@ function initCollapsibleContainers() {
   $('.collapsible').click(function(e) {
     var container = $($(e.currentTarget).siblings()[0]);
     container.toggleClass("collapse");
+    var glyph = $(e.currentTarget).children()[0];
+    if ($(glyph).hasClass('glyphicon-triangle-bottom')) {
+      $(glyph).removeClass('glyphicon-triangle-bottom');
+      $(glyph).addClass('glyphicon-triangle-right');
+    } else {
+      $(glyph).removeClass('glyphicon-triangle-right');
+      $(glyph).addClass('glyphicon-triangle-bottom');
+    }
   });
 
   $('.collapse-all').click(function(e) {
     if (shouldCollapse) {
       $('.collapsible-container').addClass('collapse');
+      $('.glyphicon').removeClass('glyphicon-triangle-bottom');
+      $('.glyphicon').addClass('glyphicon-triangle-right');
       shouldCollapse = false;
     } else {
       $('.collapsible-container').removeClass('collapse');
+      $('.glyphicon').removeClass('glyphicon-triangle-right');
+      $('.glyphicon').addClass('glyphicon-triangle-bottom');
       shouldCollapse = true;
     }
   });
@@ -143,6 +155,7 @@ function generateSuggestion(code) {
   button.attr('data-code', code);
   button.click(function() {
     $('.year3semester2 .chosen-single').css('border-color', '#8CC152');
+    $('.year3semester2 .chosen-single').css('border-width', '2px');
     $('#module-select-3-2').val(code+' - '+modules[code].name).trigger("chosen:updated");
     var availableTypes = modules[code].type;
     // Reset the options.
@@ -171,6 +184,7 @@ function initModulesList() {
   attachAutoCompleteToSearchModuleInput(4,2);
 
   $('.year3semester2 .chosen-single').css('border-color', '#CCCCCC');
+  $('.year3semester2 .chosen-single').css('border-width', '1px');
   initRemoveModule();
 }
 
@@ -273,9 +287,13 @@ function generateFutureSemsTable(year, semester) {
     }
   }
 
+  $('[data-toggle="tooltip"]').tooltip();
+  var tooltipMessage = "This is the CAP you will get from achieving these grades above after this semester. You can compare it to your Goal CAP.";
+
   if (year == 3 && semester == 2) {
     futureSemesterTemplate += '<tr>';
-    futureSemesterTemplate += '<td class="expected-cap" colspan="7" style="text-align: right;" ">';
+    futureSemesterTemplate += '<td colspan="3"></td>';
+    futureSemesterTemplate += '<td class="expected-cap" colspan="4" style="text-align: right;" data-toggle="tooltip" data-placement="top" title="'+tooltipMessage+'">';
     futureSemesterTemplate += 'Expected CAP after this semester: -';
     futureSemesterTemplate += '</td>';
     futureSemesterTemplate += '</tr>';
