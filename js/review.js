@@ -26,23 +26,52 @@ $(document).ready(function() {
     });
     $('#select-module-for-review').chosen({'width': '100%', 'white-space': 'nowrap'});
     
+    createReviewEvent();
+    
 });
 
 $('#show-modal-btn').click(function() {
-    $('#select-module-for-review').val(''); //still error
+    //reset value and style of all input fields
+    $('#select-module-for-review').val('').trigger("chosen:updated");
     $('#lecturer').val('');
     $("#rate-difficulty").val('');
     $("#rate-recommendation").val('');
     $("#comment").val('');
-    $(".select-mod-review").removeClass("has-error");
+    $('.select-mod-review .chosen-single').css('border-color', ''); 
     $('.input-lecturer').removeClass("has-error");
     $(".rate-diff").removeClass("has-error");
     $(".rate-rec").removeClass("has-error");
-     $(".input-comment").removeClass("has-error");
+    $(".input-comment").removeClass("has-error");
     $(".error-text").html('');
-    $('#create-review-modal').modal('show');
     
+    $('#create-review-modal').modal('show');
 });
+
+function createReviewEvent(){
+    $("#select-module-for-review").on('change', function(){
+      $('.select-mod-review .chosen-single').css('border-color', '');  
+    });
+    $('#lecturer').on('change', function(){
+        if($('.input-lecturer').hasClass("has-error")){
+            $('.input-lecturer').removeClass("has-error");
+        }
+    });
+    $("#rate-difficulty").on('change', function(){
+        if($(".rate-diff").hasClass("has-error")){
+            $(".rate-diff").removeClass("has-error");
+        }
+    });
+    $("#rate-recommendation").on('change', function(){
+        if($(".rate-rec").hasClass("has-error")){
+            $(".rate-rec").removeClass("has-error");
+        }
+    });
+    $("#comment").on('change', function(){
+        if($(".input-comment").hasClass("has-error")){
+            $(".input-comment").removeClass("has-error");
+        }
+    });
+}
 
 $('#submit-review-btn').click(function(){
     var mod = $("#select-module-for-review").val();
@@ -52,37 +81,71 @@ $('#submit-review-btn').click(function(){
     var comment = $("#comment").val();
     
     if(mod=='' || lecturer=='' || diff=='' || rec=='' || comment==''){
-        $(".error-text").append("<p>Please fill in the required fields!</p>");
+        $(".error-text").html("<p>Please fill in the required fields!</p>");
         if(mod == ''){
-            $(".select-mod-review").addClass("has-error"); //doesnt appear
+            $('.select-mod-review .chosen-single').css('border-color', '#DA4453');
+        } else {
+            $('.select-mod-review .chosen-single').css('border-color', '');
         }
         if(lecturer==''){
             $('.input-lecturer').addClass("has-error");
+        } else {
+            $('.input-lecturer').removeClass("has-error");
         }
         if(diff==''){
             $(".rate-diff").addClass("has-error");
+        } else {
+            $(".rate-diff").removeClass("has-error");
         }
         if(rec==''){
             $(".rate-rec").addClass("has-error");
+        } else {
+            $(".rate-rec").removeClass("has-error");
         }
         if(comment==''){
             $(".input-comment").addClass("has-error");
+        } else {
+            $(".input-comment").removeClass("has-error");
         }
     } else {
+        // calculate AY for John's scenario only
+        var tempYear = pastModules[mod].year;
+        var theYear = '';
+        if(tempYear==1){
+            theYear = '2013/2014';
+        } else if(tempYear==2){
+            theYear = '2014/2015';
+        } else {
+            theYear = '2015/2016';
+        }
+        
+        var tempLength = 0;
+        for(var cd in reviews){
+            if(cd==mod){
+                tempLength = reviews[mod].length;
+                break;
+            }
+        }
+        reviews[mod][tempLength] = {"matric": "A0098103J", "ay": theYear, "lecturer": lecturer, "sem": "2", "difficulty": diff, "recommendation": rec, "comment": comment};   
+        
+        
         $('#create-review-modal').modal('hide');
-        var successText = 'Your review has been submitted! <br>You can now search for reviews by selecting the module in search bar above. Or you can click below button to create more reviews.</br>'
+        
+        var successText = 'Your review has been submitted! <br><br>You can now search for reviews by selecting the module in search bar above. Or you can click below button to create more reviews.</br>'
         $('#warning-text').html(successText);
         $('#module-review-select').prop('disabled', false);
         $('#module-review-select').trigger("chosen:updated");
         $('#search-review-btn').prop('disabled', false);
         $('#main-review-box').css('border-top-color', '#F6BB42');
+        $('.list-of-reviews').html('');
+        $('#review-header').html('');
     }
 });
 
 $('#search-review-btn').click(function(){
-    $('#sem-taken-filter').prop('disabled', false);
-    $('#diff-filter').prop('disabled', false);
-    $('#recommendation-filter').prop('disabled', false);
+    $('#sem-taken-filter').prop('disabled', false).val('');
+    $('#diff-filter').prop('disabled', false).val('');
+    $('#recommendation-filter').prop('disabled', false).val('');
     $('#apply-filter-btn').prop('disabled', false);
     
     var input = $('#module-review-select').val();
@@ -90,6 +153,55 @@ $('#search-review-btn').click(function(){
     input = input.trim();
     generateReview(input);
 });
+
+function generateReview(code) {
+    $('#warning-text').html('');
+    $('#review-header').html('Review(s) for '+code);
+    $('.list-of-reviews').html('');
+    
+    var reviewTemplate = '';
+    var tempSize = 0;
+    var found = false;
+    
+    for(var cd in reviews){
+        if(code==cd){
+            found = true;
+            var tempcode = reviews[code];
+            tempSize = tempcode.length;
+
+            if(tempSize==0){
+                $('#warning-text').html('No review has been made for this module.');
+            } else {
+                reviewTemplate += '<ul id="review-list">';
+
+                for(var i=0; i<tempcode.length; i++){
+                    var diff = tempcode[i].difficulty;
+                    var recom = tempcode[i].recommendation;
+                    reviewTemplate += '<li>';
+                    reviewTemplate += '<div class="row review-item" id="review-item-'+i+'">';
+                    reviewTemplate += '<hr>';
+                    reviewTemplate += '<div class="col-md-4">';
+                    reviewTemplate += '<p id="matric">'+tempcode[i].matric+'</p>';
+                    reviewTemplate += '<p id="sem-'+i+'">AY '+tempcode[i].ay +' semester '+tempcode[i].sem+'</p>';
+                    reviewTemplate += '<p>Lecturer - '+tempcode[i].lecturer+'</p>';
+                    reviewTemplate += '<p id="diff-'+i+'">Difficulty - '+tempcode[i].difficulty+'</p>';
+                    reviewTemplate += '<p id="recom-'+i+'">Rating - '+tempcode[i].recommendation+'</p>';
+                    reviewTemplate += '</div>';
+                    reviewTemplate += '<div class="col-md-8">';
+                    reviewTemplate += '<p>'+tempcode[i].comment+'</p>';
+                    reviewTemplate += '</div></div></li>';
+                }   
+
+                reviewTemplate += '</ul>';   
+            }
+            $('.list-of-reviews').append(reviewTemplate);   
+        }
+    }
+    if(!found){
+        $('#warning-text').html('No review has been made for this module.'); 
+    }
+}
+
 
 $('#apply-filter-btn').click(function(){
     var semester = $('#sem-taken-filter').val();
@@ -125,13 +237,15 @@ $('#apply-filter-btn').click(function(){
                 }
             }
             if(diffFilter){
-                var thisDiff = $('#diff-'+i).text(); 
+                var thisDiff = $('#diff-'+i).text();
+                thisDiff = thisDiff.substring(12);
                 if(thisDiff!=diff){
                     $('#review-item-'+i).addClass('hide');
                 }
             }
             if(recFilter){
                 var thisRec = $('#recom-'+i).text();
+                thisRec = thisRec.substring(8);
                 if(thisRec!=rating){
                     $('#review-item-'+i).addClass('hide');
                 }
@@ -141,52 +255,16 @@ $('#apply-filter-btn').click(function(){
     
 });
 
-function generateReview(code) {
-    
-    $('#warning-text').html('');
-    //$('#show-modal-btn').remove();
-    $('#review-header').html('Review(s) for '+code);
-    $('.list-of-reviews').html('');
-    
-    var reviewTemplate = '';
-    var found = false;
-    for(var cd in reviews){
-        if(code==cd){
-            found = true;
-            var tempcode = reviews[code];
-            reviewTemplate += '<ul id="review-list">';
-            
-            for(var i=0; i<tempcode.length; i++){
-                var diff = tempcode[i].difficulty;
-                var recom = tempcode[i].recommendation;
-                reviewTemplate += '<li>';
-                reviewTemplate += '<div class="row review-item" id="review-item-'+i+'">';
-                reviewTemplate += '<div class="col-md-3">';
-                reviewTemplate += '<p id="matric">'+tempcode[i].matric+'</p>';
-                reviewTemplate += '<p id="sem-'+i+'">AY '+tempcode[i].ay +' semester '+tempcode[i].sem+'</p>';
-                reviewTemplate += '<p>Lecturer : '+tempcode[i].lecturer+'</p>';
-                reviewTemplate += '<div class="col-md-6">';
-                reviewTemplate += '<p>Difficulty:</p>';
-                reviewTemplate += '<p id="diff-'+i+'">'+tempcode[i].difficulty+'</p>';
-                reviewTemplate += '</div>';
-                reviewTemplate += '<div class="col-md-6">';
-                reviewTemplate += '<p>Rating:</p>';
-                reviewTemplate += '<p id="recom-'+i+'">'+tempcode[i].recommendation+'</p>';
-                reviewTemplate += '</div>';
-                reviewTemplate += '</div>';
-                reviewTemplate += '<div class="col-md-9">';
-                reviewTemplate += '<p>'+tempcode[i].comment+'</p>';
-                reviewTemplate += '</div></div></li>';
-            }
-            
-            reviewTemplate += '</ul>';
-        }
+$("#clear-filter").click(function(){
+    $('#sem-taken-filter').val('');
+    $('#diff-filter').val('');
+    $('#recommendation-filter').val('');
+    var listLength = $('#review-list li').length;
+    for(var i=0; i<listLength; i++){
+        $('#review-item-'+i).removeClass('hide');
     }
-    if(!found){
-       $('#warning-text').html('No review has been made for this module.');
-    }
-    $('.list-of-reviews').append(reviewTemplate);
-}
+});
+
 
 var reviews = {
     "CS1231": [
@@ -215,15 +293,7 @@ var reviews = {
         "difficulty": "Somewhat Difficult",
         "recommendation": "Not Recommended",
         "comment": "Lecturer is very lousy. Don't take this unless you really don't have other mods to take!!!!"
-        },
-        {"matric": "A0102873L",
-        "ay": "2013/2014",
-        "lecturer": "Prof Y",
-        "sem": "1",
-        "difficulty": "Moderate",
-        "recommendation": "Neutral",
-        "comment": "Not a good module. Most of the topics are textbook-material and not much "
-        },
+        }
     ],
     "MA1521": [
         {"matric": "A0102367U",
@@ -250,7 +320,30 @@ var reviews = {
         "recommendation": "Neutral",
         "comment": "All math and calculus. Not related to computing and coding st all. Prof Wang Fei is very talented in teaching even though he likes to give tricky problems."
         }
-    ]
+    ],
+    "CS1101S": [],
+    "MA1101R": [],
+    "TR2201": [],
+    "LSM1302": [],
+    "ST2334": [],
+    "IS1103": [],
+    "CS2020": [],
+    "CS2100": [],
+    "CS2101": [],
+    "CS2103T": [],
+    "CS3216": [],
+    "CS2103": [],
+    "CS2102": [],
+    "CS2105": [],
+    "CS2106": [],
+    "CS2107": [],
+    "CS3230": [],
+    "LSM1303": [],
+    "CS3103": [],
+    "LSM1301": [],
+    "GEK1520": [],
+    "CS4238": [],
+    "CS3235": []
 }
 
 var modules = {

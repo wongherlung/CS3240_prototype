@@ -38,23 +38,26 @@
     </div><!-- /.container-fluid -->
 </nav>
     
-<!-- Review listing -->
 <div class="row">
     <div class="col-md-10 col-centered">
         <div class="row">
+            
+            <!-- Search review -->
             <div class="col-md-6">
                 <div class="modules-container box search-review-box">
                     <h3 class="text-center">Search for Reviews</h3>
-                    <div class="col-md-8 form-group">
+                    <div class="col-md-8 form-group" style="margin-top: 20px">
                         <select disabled class="select-mod form-control" data-placeholder="Select a module" id="module-review-select">
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4" style="margin-top: 20px">
                         <button disabled type="button" class="btn btn-success" id="search-review-btn">Search</button>
                     </div>
                     <div class="row"></div>
                 </div>
             </div>
+            
+            <!-- Filter -->
             <div class="col-md-6">
                 <div class="modules-container box filter-box">
                     <h3 class="text-center">Filter</h3>
@@ -62,7 +65,7 @@
                         <div class="col-md-3 form-group">
                             <label for="sem-taken">Semester :</label>
                             <select disabled class="form-control" id="sem-taken-filter">
-                                <option value=""></option>
+                                <option value="">--select--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                             </select>
@@ -70,18 +73,18 @@
                         <div class="col-md-3 form-group">
                             <label for="diff">Difficulty :</label>
                             <select disabled class="form-control" id="diff-filter">
-                                <option value=""></option>
+                                <option value="">--select--</option>
                                 <option value="Very Easy">Very Easy</option>
                                 <option value="Somewhat Easy">Somewhat Easy</option>
                                 <option value="Moderate">Moderate</option>
                                 <option value="Somewhat Difficult">Somewhat Difficult</option>
-                                <option value="Very Diificult">Very Diificult</option>
+                                <option value="Very Difficult">Very Difficult</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="recommendation">Rating :</label>
                             <select disabled class="form-control" id="recommendation-filter">
-                                <option value=""></option>
+                                <option value="">--select--</option>
                                 <option value="Highly Not Recommended">Highly Not Recommended</option>
                                 <option value="Not Recommended">Not Recommended</option>
                                 <option value="Neutral">Neutral</option>
@@ -89,17 +92,19 @@
                                 <option value="Highly Recommended">Highly Recommended</option>
                             </select>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-md-3 form-group" style="margin-top: 20px">
                             <button disabled type="button" class="btn btn-success" id="apply-filter-btn">Apply</button>
                         </div>
                     </div>
+                    <p id="clear-filter">Clear all filters</p>
                 </div>
             </div>
         </div>
         
+        <!-- Review List -->
         <div class="col-md-12 modules-container text-center warning-box mt20" id="main-review-box">
             <h3 id="review-header"></h3>
-            <h4 id="warning-text">You have not submitted a review yet. To be able to view other user-submitted review, please proceed to make a review first.</h4>   
+            <h4 id="warning-text">You have not submitted a review yet this semester! <br>To be able to view other user-submitted review, you have to make at least one review for each semester. <br><br>Please proceed to make a review first by clicking below button.</h4>   
             
             <div class="list-of-reviews text-left"></div>
             
@@ -136,22 +141,22 @@
                     <label for="rate-difficulty">Difficulty* :</label>
                     <select class="form-control" id="rate-difficulty">
                         <option value=""></option>
-                        <option value="1">1 - Very Easy</option>
-                        <option value="2">2 - Somewhat Easy</option>
-                        <option value="3">3 - Moderate</option>
-                        <option value="4">4 - Somewhat Difficult</option>
-                        <option value="5">5 - Very Diificult</option>
+                        <option value="Very Easy">Very Easy</option>
+                        <option value="Somewhat Easy">Somewhat Easy</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Somewhat Difficult">Somewhat Difficult</option>
+                        <option value="Very Difficult">Very Difficult</option>
                     </select>
                 </div>
                 <div class="col-md-6 form-group rate-rec">
                     <label for="rate-recommendation">Rating* :</label>
                     <select class="form-control" id="rate-recommendation">
                         <option value=""></option>
-                        <option value="1">1 - Highly Not Recommended</option>
-                        <option value="2">2 - Not Recommended</option>
-                        <option value="3">3 - Neutral</option>
-                        <option value="4">4 - Recommended</option>
-                        <option value="5">5 - Highly Recommended</option>
+                        <option value="Highly Not Recommended">Highly Not Recommended</option>
+                        <option value="Not Recommended">Not Recommended</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Recommended">Recommended</option>
+                        <option value="Highly Recommended">Highly Recommended</option>
                     </select>
                 </div>
                 <!--Comment for review-->
