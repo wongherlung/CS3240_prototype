@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="modules-container box search-review-box">
-                    <h3>Search for Reviews</h3>
+                    <h3 class="text-center">Search for Reviews</h3>
                     <div class="col-md-8 form-group">
                         <select disabled class="select-mod form-control" data-placeholder="Select a module" id="module-review-select">
                         </select>
@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="modules-container box text-center filter-box">
-                    <h3>Filter</h3>
+                <div class="modules-container box filter-box">
+                    <h3 class="text-center">Filter</h3>
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label for="sem-taken">Semester :</label>
@@ -71,22 +71,22 @@
                             <label for="diff">Difficulty :</label>
                             <select disabled class="form-control" id="diff-filter">
                                 <option value=""></option>
-                                <option value="1">1 - Very Easy</option>
-                                <option value="2">2 - Somewhat Easy</option>
-                                <option value="3">3 - Moderate</option>
-                                <option value="4">4 - Somewhat Difficult</option>
-                                <option value="5">5 - Very Diificult</option>
+                                <option value="Very Easy">Very Easy</option>
+                                <option value="Somewhat Easy">Somewhat Easy</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Somewhat Difficult">Somewhat Difficult</option>
+                                <option value="Very Diificult">Very Diificult</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="recommendation">Rating :</label>
                             <select disabled class="form-control" id="recommendation-filter">
                                 <option value=""></option>
-                                <option value="1">1 - Highly Not Recommended</option>
-                                <option value="2">2 - Not Recommended</option>
-                                <option value="3">3 - Neutral</option>
-                                <option value="4">4 - Recommended</option>
-                                <option value="5">5 - Highly Recommended</option>
+                                <option value="Highly Not Recommended">Highly Not Recommended</option>
+                                <option value="Not Recommended">Not Recommended</option>
+                                <option value="Neutral">Neutral</option>
+                                <option value="Recommended">Recommended</option>
+                                <option value="Highly Recommended">Highly Recommended</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
@@ -118,18 +118,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Create Review</h4>
+                <p>*Required field</p>
             </div>
             <div class="modal-body">
                 <!--select from previously taken mods-->
-                <div class="form-group">
-                    <label for="select-module-for-review">Select module :</label>
-                    <select class="form-control" id="select-module-for-review">
+                <div class="form-group select-mod-review">
+                    <label for="select-module-for-review">Select from past modules* :</label>
+                    <select class="form-control" data-placeholder="Past modules" id="select-module-for-review">
                     </select>
                 </div>
+                <div class="form-group input-lecturer">
+                    <label for="lecturer">Lecturer's Name* :</label>
+                    <input type="text" class="form-control" placeholder="eg. Aaron Tan" id="lecturer">
+                </div>
                 <!--rate difficulty & recommendation-->
-                <div class="col-md-6 form-group">
-                    <label for="rate-difficulty">Difficulty :</label>
+                <div class="col-md-6 form-group rate-diff">
+                    <label for="rate-difficulty">Difficulty* :</label>
                     <select class="form-control" id="rate-difficulty">
+                        <option value=""></option>
                         <option value="1">1 - Very Easy</option>
                         <option value="2">2 - Somewhat Easy</option>
                         <option value="3">3 - Moderate</option>
@@ -137,9 +143,10 @@
                         <option value="5">5 - Very Diificult</option>
                     </select>
                 </div>
-                <div class="col-md-6 form-group">
-                    <label for="rate-recommendation">Recommended?</label>
+                <div class="col-md-6 form-group rate-rec">
+                    <label for="rate-recommendation">Rating* :</label>
                     <select class="form-control" id="rate-recommendation">
+                        <option value=""></option>
                         <option value="1">1 - Highly Not Recommended</option>
                         <option value="2">2 - Not Recommended</option>
                         <option value="3">3 - Neutral</option>
@@ -148,10 +155,11 @@
                     </select>
                 </div>
                 <!--Comment for review-->
-                <div class="form-group">
-                    <label for="comment">Comment :</label>
+                <div class="form-group input-comment">
+                    <label for="comment">Comment* :</label>
                     <textarea class="form-control" rows="8" id="comment"></textarea>
                 </div>
+                <div class="error-text" style="color: #DA4453;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

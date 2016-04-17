@@ -150,7 +150,6 @@
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
-    border-top-color: #A0A0A0;
 }
 
 .very-easy {
@@ -177,7 +176,11 @@
     height: 180px;
 }
 
-#sem-taken-filter, #diff-filter, #recommendation-filter {
+#sem-taken-filter, #diff-filter, #recommendation-filter, #rate-difficulty, #rate-recommendation {
     border-radius: 0;
     -webkit-appearance: none;
+}
+
+ul {
+    list-style-type: none;
 }
