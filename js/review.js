@@ -110,6 +110,7 @@ $('#submit-review-btn').click(function(){
     } else {
         // calculate AY for John's scenario only
         var tempYear = pastModules[mod].year;
+        var tempSem = ""+pastModules[mod].semester;
         var theYear = '';
         if(tempYear==1){
             theYear = '2013/2014';
@@ -126,7 +127,7 @@ $('#submit-review-btn').click(function(){
                 break;
             }
         }
-        reviews[mod][tempLength] = {"matric": "A0098103J", "ay": theYear, "lecturer": lecturer, "sem": "2", "difficulty": diff, "recommendation": rec, "comment": comment};   
+        reviews[mod][tempLength] = {"matric": "A0098103J", "ay": theYear, "lecturer": lecturer, "sem": tempSem, "difficulty": diff, "recommendation": rec, "comment": comment};   
         
         
         $('#create-review-modal').modal('hide');
@@ -238,14 +239,14 @@ $('#apply-filter-btn').click(function(){
             }
             if(diffFilter){
                 var thisDiff = $('#diff-'+i).text();
-                thisDiff = thisDiff.substring(12);
+                thisDiff = thisDiff.substring(13);
                 if(thisDiff!=diff){
                     $('#review-item-'+i).addClass('hide');
                 }
             }
             if(recFilter){
                 var thisRec = $('#recom-'+i).text();
-                thisRec = thisRec.substring(8);
+                thisRec = thisRec.substring(9);
                 if(thisRec!=rating){
                     $('#review-item-'+i).addClass('hide');
                 }
