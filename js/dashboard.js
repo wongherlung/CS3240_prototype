@@ -72,12 +72,12 @@ function initCollapsibleContainers() {
 function capWindowEvents() {
   // Show the hidden CAP
   $('.hidden-cap').click(function() {
-    $(this).addClass('hidden');
+    $('.hidden-cap').addClass('hidden');
     $('.shown-cap').removeClass('hidden');
   });
 
   $('.shown-cap').click(function() {
-    $(this).addClass('hidden');
+    $('.shown-cap').addClass('hidden');
     $('.hidden-cap').removeClass('hidden');
   });
 
